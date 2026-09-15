@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Naeem Life OS — Dashboard</title>
+  <style>
+    :root{
+      --bg:#070a10;
+      --card:#0f172a;
+      --card2:#0b1220;
+      --line:#1f2a3a;
+      --text:#e8f0ff;
+      --muted:#9bb0c9;
+      --accent:#60a5fa;
+      --good:#34d399;
+      --warn:#fbbf24;
+      --bad:#fb7185;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: radial-gradient(900px 500px at 20% -10%, rgba(96,165,250,.20), transparent 60%),
+                  radial-gradient(900px 500px at 80% 0%, rgba(52,211,153,.14), transparent 60%),
+                  linear-gradient(180deg, #05070c, var(--bg) 25%);
+      color:var(--text);
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:16px 14px 24px}
+    .top{
+      position:sticky; top:0; z-index:50;
+      padding:12px; border:1px solid var(--line); border-radius:var(--radius);
+      background: rgba(15,23,42,.75);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .topRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between}
+    .title{display:flex; flex-direction:column; gap:2px}
+    h1{margin:0;font-size:16px; letter-spacing:.2px}
+    .sub{margin:0;color:var(--muted);font-size:12px}
+    .controls{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+    input[type="date"], select, input[type="text"], input[type="number"]{
+      background:var(--card2);
+      border:1px solid var(--line);
+      color:var(--text);
+      padding:10px 10px;
+      border-radius:14px;
+      outline:none;
+      font-size:14px;
+    }
+    input[type="number"]{width:110px}
+    button{
+      background:var(--card2);
+      border:1px solid var(--line);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      font-size:14px;
+    }
+    button:active{transform:scale(.99)}
+    button:hover{border-color:#334155}
+
+    .grid{display:grid; grid-template-columns: 1fr; gap:14px; margin-top:14px}
+    @media(min-width:860px){.grid{grid-template-columns: 1.1fr .9fr}}
+    .card{
+      border:1px solid var(--line);
+      background: rgba(15,23,42,.72);
+      border-radius:var(--radius);
+      padding:14px;
+      box-shadow: var(--shadow);
+    }
+    .card h2{margin:0 0 10px 0; font-size:14px; color:#dbe7ff}
+    .muted{color:var(--muted); font-size:12px}
+
+    .dashTop{
+      display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    }
+    .kpis{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; width:100%}
+    @media(min-width:520px){.kpis{grid-template-columns: repeat(4, minmax(0,1fr));}}
+    .kpi{
+      border:1px solid var(--line); background:var(--card2);
+      border-radius:16px; padding:10px;
+      min-height:64px;
+    }
+    .kpi .label{font-size:11px;color:var(--muted)}
+    .kpi .value{font-size:18px;font-weight:800;margin-top:4px}
+    .good{color:var(--good)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+
+    .ringWrap{display:flex; gap:10px; align-items:center}
+    .ring{width:74px;height:74px}
+    .ringText{display:flex; flex-direction:column; gap:2px}
+    .ringText b{font-size:14px}
+    .ringText span{font-size:12px;color:var(--muted)}
+
+    .sectionHead{display:flex; align-items:baseline; justify-content:space-between; gap:10px}
+    .sectionHead .right{display:flex; gap:8px; flex-wrap:wrap}
+
+    .timeline{display:flex; flex-direction:column; gap:10px; margin-top:10px}
+    .slot{
+      display:grid; grid-template-columns: 92px 1fr; gap:10px;
+      border:1px solid var(--line); background:var(--card2);
+      padding:10px; border-radius:16px;
+    }
+    .time{font-weight:800;font-size:12px;color:#cfe0ff}
+    .slot input[type="text"]{width:100%}
+
+    .tasks{display:flex; flex-direction:column; gap:10px; margin-top:10px}
+    .task{
+      border:1px solid var(--line); background:var(--card2);
+      border-radius:16px; padding:10px;
+      display:grid; grid-template-columns: 26px 1fr; gap:10px; align-items:start;
+    }
+    .task input[type="checkbox"]{transform: translateY(2px) scale(1.15)}
+    .taskTop{display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .taskTitle{font-weight:800;font-size:13px}
+    .pill{
+      font-size:11px; color:var(--muted);
+      border:1px solid var(--line); background:#0b1220;
+      padding:6px 10px;border-radius:999px;
+    }
+    .taskMeta{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .mini{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+    .mini input[type="number"]{width:120px}
+    .dangerBtn{border-color:#3b1d28;background:#120a0f}
+    .accentBtn{border-color:#1e3a8a}
+
+    textarea{
+      width:100%; min-height:110px; resize:vertical;
+      background:var(--card2); border:1px solid var(--line); color:var(--text);
+      border-radius:16px; padding:10px; outline:none; font-size:14px;
+    }
+
+    .toast{
+      position:fixed; left:50%; transform:translateX(-50%);
+      bottom:16px; z-index:999;
+      background:rgba(11,18,32,.92);
+      border:1px solid var(--line);
+      padding:10px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:12px;
+      display:none;
+    }
+
+    @media print{
+      .top, .toast, button {display:none !important}
+      body{background:#fff;color:#000}
+      .card{background:#fff;border:1px solid #ddd; box-shadow:none}
+      input, textarea, select{border:1px solid #ccc;color:#000;background:#fff}
+      .kpi,.slot,.task{background:#fff;border:1px solid #ddd}
+      .pill{border:1px solid #ddd;background:#fff;color:#333}
+      .muted{color:#333}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="topRow">
+        <div class="title">
+          <h1>Naeem Life OS — Dashboard</h1>
+          <p class="sub">Personal timetable + tasks + Montvero tracker. Mobile-first. Auto-saves.</p>
+        </div>
+
+        <div class="controls">
+          <input id="date" type="date" />
+          <select id="mode">
+            <option value="ramadan">Ramadan Mode</option>
+            <option value="regular">Regular Mode</option>
+          </select>
+          <button id="printBtn">Print</button>
+          <button id="exportBtn">Export</button>
+          <button id="importBtn">Import</button>
+          <button id="resetBtn" class="dangerBtn">Reset Day</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="dashTop">
+          <div class="ringWrap">
+            <canvas class="ring" id="ring"></canvas>
+            <div class="ringText">
+              <b id="scoreText">0%</b>
+              <span id="scoreHint">Start ticking tasks</span>
+            </div>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi">
+              <div class="label">Tasks done</div>
+              <div class="value" id="kDone">0</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Total tasks</div>
+              <div class="value" id="kTotal">0</div>
+            </div>
+            <div class="kpi">
+              <div class="label">No-scroll streak</div>
+              <div class="value" id="kStreak">0</div>
+            </div>
+            <div class="kpi">
+              <div class="label">Montvero leads</div>
+              <div class="value" id="kLeads">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="sectionHead">
+          <div>
+            <h2 style="margin:0">Daily Timetable</h2>
+            <div class="muted">Editable. Keep it simple. Mode changes your default routine.</div>
+          </div>
+          <div class="right">
+            <button id="addSlotBtn" class="accentBtn">+ Slot</button>
+            <button id="resetSlotsBtn">Reset Slots</button>
+          </div>
+        </div>
+
+        <div class="timeline" id="timeline"></div>
+
+        <div style="margin-top:14px" class="sectionHead">
+          <div>
+            <h2 style="margin:0">Notes</h2>
+            <div class="muted">Wins, stress, what to improve.</div>
+          </div>
+        </div>
+        <textarea id="notes" placeholder="Today I did… / I struggled with… / Tomorrow I will…"></textarea>
+      </div>
+
+      <div class="card">
+        <div class="sectionHead">
+          <div>
+            <h2 style="margin:0">Tasks (Your Personal Checklist)</h2>
+            <div class="muted">Add anything: “Montvero 2 hrs”, “20 LinkedIn DMs”, “Quran 2 pages”.</div>
+          </div>
+          <div class="right">
+            <button id="addTaskBtn" class="accentBtn">+ Task</button>
+          </div>
+        </div>
+
+        <div class="tasks" id="tasks"></div>
+
+        <div style="margin-top:14px" class="sectionHead">
+          <div>
+            <h2 style="margin:0">Montvero Mini Tracker</h2>
+            <div class="muted">Track your daily outreach numbers (editable goals).</div>
+          </div>
+          <div class="right">
+            <button id="resetMontBtn">Reset</button>
+          </div>
+        </div>
+
+        <div class="task" style="margin-top:10px">
+          <input type="checkbox" id="mDone" />
+          <div>
+            <div class="taskTop">
+              <div class="taskTitle">Montvero Outreach Completed</div>
+              <span class="pill">Daily</span>
+            </div>
+
+            <div class="taskMeta">
+              <div class="mini">
+                <span class="pill">Hours</span>
+                <input type="number" min="0" step="0.25" id="mHours" />
+                <span class="muted">goal</span>
+                <input type="number" min="0" step="0.25" id="mHoursGoal" />
+              </div>
+
+              <div class="mini">
+                <span class="pill">LinkedIn DMs</span>
+                <input type="number" min="0" step="1" id="mDMs" />
+                <span class="muted">goal</span>
+                <input type="number" min="0" step="1" id="mDMsGoal" />
+              </div>
+
+              <div class="mini">
+                <span class="pill">Follow-ups</span>
+                <input type="number" min="0" step="1" id="mFU" />
+                <span class="muted">goal</span>
+                <input type="number" min="0" step="1" id="mFUGoal" />
+              </div>
+
+              <div class="mini">
+                <span class="pill">Leads</span>
+                <input type="number" min="0" step="1" id="mLeads" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px" class="sectionHead">
+          <div>
+            <h2 style="margin:0">Weekly Focus (30 days)</h2>
+            <div class="muted">MALYX parked for 30 days. Focus: Montvero + Digital products.</div>
+          </div>
+        </div>
+        <div id="weekly" style="display:flex; flex-direction:column; gap:10px; margin-top:10px"></div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Saved ✅</div>
+
+<script>
+const LS_KEY = "naeem_life_os_v2";
+const dateEl = document.getElementById("date");
+const modeEl = document.getElementById("mode");
+const timelineEl = document.getElementById("timeline");
+const tasksEl = document.getElementById("tasks");
+const notesEl = document.getElementById("notes");
+const ring = document.getElementById("ring");
+const weeklyEl = document.getElementById("weekly");
+
+const kDone = document.getElementById("kDone");
+const kTotal = document.getElementById("kTotal");
+const kStreak = document.getElementById("kStreak");
+const kLeads = document.getElementById("kLeads");
+const scoreText = document.getElementById("scoreText");
+const scoreHint = document.getElementById("scoreHint");
+
+const mont = {
+  done: document.getElementById("mDone"),
+  hours: document.getElementById("mHours"),
+  hoursGoal: document.getElementById("mHoursGoal"),
+  dms: document.getElementById("mDMs"),
+  dmsGoal: document.getElementById("mDMsGoal"),
+  fu: document.getElementById("mFU"),
+  fuGoal: document.getElementById("mFUGoal"),
+  leads: document.getElementById("mLeads"),
+};
+
+const WEEKLY_FOCUS = [
+  {week:"Week 1", items:["Finish Montvero PPT catalogue", "Package & polish Attendance Tracker (cover + instructions)"]},
+  {week:"Week 2", items:["First 10 sales goal (digital product)", "Daily Montvero outreach + tracking"]},
+  {week:"Week 3", items:["Improve product from feedback", "Create Template #2 (Salary + Attendance combo)"]},
+  {week:"Week 4", items:["Track revenue + leads", "Decide next month: scale vs activate MALYX"]},
+];
+
+const DEFAULT_SLOTS = {
+  ramadan: [
+    {time:"04:30–05:15", task:"Suhoor + hydration"},
+    {time:"05:30", task:"Fajr + Quran (10–15 min)"},
+    {time:"06:00–07:30", task:"Sleep / rest"},
+    {time:"08:30–09:15", task:"Digital products + Data Analyst practice"},
+    {time:"10:30–18:30", task:"Office + Dhuhr/Asr"},
+    {time:"18:30", task:"Maghrib + Iftar (light first)"},
+    {time:"19:45–21:00", task:"Isha + Taraweeh"},
+    {time:"21:30–22:30", task:"Montvero outreach (1 hr)"},
+    {time:"22:45", task:"Wind down + sleep"}
+  ],
+  regular: [
+    {time:"05:15", task:"Wake up + freshen up"},
+    {time:"05:30", task:"Fajr + Quran (10–15 min)"},
+    {time:"06:00–07:15", task:"Gym + record transformation"},
+    {time:"08:15–09:15", task:"Digital products + Data Analyst practice"},
+    {time:"10:30–18:30", task:"Office + Dhuhr/Asr"},
+    {time:"19:45", task:"Isha"},
+    {time:"20:30–22:30", task:"Montvero outreach (2 hrs)"},
+    {time:"22:45", task:"Wind down + sleep"}
+  ]
+};
+
+function todayISO(){
+  const d = new Date();
+  const tz = d.getTimezoneOffset()*60000;
+  return new Date(d - tz).toISOString().slice(0,10);
+}
+function dayKey(date, mode){ return `${date}__${mode}`; }
+
+function getAll(){
+  try{ return JSON.parse(localStorage.getItem(LS_KEY)) || {}; }
+  catch(e){ return {}; }
+}
+function setAll(obj){
+  localStorage.setItem(LS_KEY, JSON.stringify(obj));
+  toast("Saved ✅");
+}
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.style.display="block";
+  clearTimeout(window.__t);
+  window.__t=setTimeout(()=>t.style.display="none", 900);
+}
+
+function defaultModeForDate(dateStr){
+  const d = new Date(dateStr + "T00:00:00");
+  const april1 = new Date(d.getFullYear(), 3, 1);
+  return (d < april1) ? "ramadan" : "regular";
+}
+
+function uid(){ return Math.random().toString(16).slice(2) + Date.now().toString(16); }
+function num(v){ const n=Number(v); return Number.isFinite(n) ? n : 0; }
+function escapeHtml(str){
+  return (str ?? "").toString()
+    .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
+}
+
+function defaultTasks(mode){
+  const base = [
+    {id:uid(), title:"Fajr + Quran", category:"Deen", done:false},
+    {id:uid(), title:"Dhuhr on time", category:"Deen", done:false},
+    {id:uid(), title:"Asr on time", category:"Deen", done:false},
+    {id:uid(), title:"Maghrib on time", category:"Deen", done:false},
+    {id:uid(), title:"Isha on time", category:"Deen", done:false},
+    {id:uid(), title:"Digital products / Data Analyst practice (45+ min)", category:"Skills", done:false},
+    {id:uid(), title:"No late night scrolling", category:"Discipline", done:false, streakKey:"noScroll"},
+    {id:uid(), title:"Sleep on time", category:"Health", done:false},
+  ];
+  if(mode==="ramadan"){
+    base.splice(5,0,{id:uid(), title:"Taraweeh", category:"Deen", done:false});
+  }else{
+    base.splice(5,0,{id:uid(), title:"Morning Gym", category:"Gym", done:false});
+  }
+  base.push({id:uid(), title:"Montvero outreach (do targets)", category:"Business", done:false});
+  return base;
+}
+
+function defaultMontGoals(mode){
+  return {
+    done:false,
+    hours:0,
+    hoursGoal: (mode==="ramadan" ? 1 : 2),
+    dms:0,
+    dmsGoal:20,
+    fu:0,
+    fuGoal:10,
+    leads:0
+  };
+}
+
+function ensureDayRecord(all, dateStr, mode){
+  const key = dayKey(dateStr, mode);
+  if(!all[key]){
+    all[key] = {
+      slots: JSON.parse(JSON.stringify(DEFAULT_SLOTS[mode])),
+      tasks: defaultTasks(mode),
+      notes:"",
+      mont: defaultMontGoals(mode)
+    };
+  } else {
+    all[key].slots ||= JSON.parse(JSON.stringify(DEFAULT_SLOTS[mode]));
+    all[key].tasks ||= defaultTasks(mode);
+    all[key].notes ||= "";
+    all[key].mont ||= defaultMontGoals(mode);
+  }
+  return all[key];
+}
+
+function renderWeekly(){
+  weeklyEl.innerHTML="";
+  WEEKLY_FOCUS.forEach(w=>{
+    const div=document.createElement("div");
+    div.className="task";
+    div.innerHTML = `
+      <input type="checkbox" disabled />
+      <div>
+        <div class="taskTop">
+          <div class="taskTitle">${w.week}</div>
+          <span class="pill">Focus</span>
+        </div>
+        <div class="muted" style="margin-top:8px; display:flex; flex-direction:column; gap:6px;">
+          ${w.items.map(i=>`<div>• ${escapeHtml(i)}</div>`).join("")}
+        </div>
+      </div>
+    `;
+    weeklyEl.appendChild(div);
+  });
+}
+
+function renderSlots(rec){
+  timelineEl.innerHTML="";
+  rec.slots.forEach((s, idx)=>{
+    const row=document.createElement("div");
+    row.className="slot";
+    row.innerHTML=`
+      <div class="time">
+        <input type="text" value="${escapeHtml(s.time)}" data-kind="time" data-idx="${idx}" style="width:100%"/>
+      </div>
+      <div>
+        <input type="text" value="${escapeHtml(s.task)}" data-kind="task" data-idx="${idx}" />
+        <div class="muted" style="margin-top:6px; display:flex; gap:8px; flex-wrap:wrap;">
+          <button data-act="up" data-idx="${idx}">↑</button>
+          <button data-act="down" data-idx="${idx}">↓</button>
+          <button data-act="del" data-idx="${idx}" class="dangerBtn">Delete</button>
+        </div>
+      </div>
+    `;
+    timelineEl.appendChild(row);
+  });
+
+  timelineEl.querySelectorAll("input").forEach(inp=>{
+    inp.addEventListener("input", (e)=>{
+      const idx=+e.target.dataset.idx;
+      const kind=e.target.dataset.kind;
+      rec.slots[idx][kind]=e.target.value;
+      persist(rec);
+    });
+  });
+
+  timelineEl.querySelectorAll("button").forEach(btn=>{
+    btn.addEventListener("click",(e)=>{
+      const idx=+e.target.dataset.idx;
+      const act=e.target.dataset.act;
+      if(act==="del"){
+        rec.slots.splice(idx,1);
+      } else if(act==="up" && idx>0){
+        [rec.slots[idx-1], rec.slots[idx]] = [rec.slots[idx], rec.slots[idx-1]];
+      } else if(act==="down" && idx<rec.slots.length-1){
+        [rec.slots[idx+1], rec.slots[idx]] = [rec.slots[idx], rec.slots[idx+1]];
+      }
+      persist(rec);
+      renderSlots(rec);
+    });
+  });
+}
+
+function renderTasks(rec){
+  tasksEl.innerHTML="";
+  rec.tasks.forEach(t=>{
+    const div=document.createElement("div");
+    div.className="task";
+    div.innerHTML=`
+      <input type="checkbox" ${t.done ? "checked":""} data-id="${t.id}" />
+      <div>
+        <div class="taskTop">
+          <div class="taskTitle" contenteditable="true" data-edit="title" data-id="${t.id}">${escapeHtml(t.title)}</div>
+          <span class="pill" contenteditable="true" data-edit="category" data-id="${t.id}">${escapeHtml(t.category || "General")}</span>
+        </div>
+        <div class="muted" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+          <button class="dangerBtn" data-del="${t.id}">Delete</button>
+          ${t.streakKey ? `<span class="pill">Streak item</span>` : ``}
+        </div>
+      </div>
+    `;
+    tasksEl.appendChild(div);
+  });
+
+  tasksEl.querySelectorAll('input[type="checkbox"]').forEach(cb=>{
+    cb.addEventListener("change",(e)=>{
+      const id=e.target.dataset.id;
+      const t=rec.tasks.find(x=>x.id===id);
+      if(!t) return;
+      t.done = e.target.checked;
+      persist(rec);
+      updateDashboard(rec);
+    });
+  });
+
+  tasksEl.querySelectorAll("button[data-del]").forEach(b=>{
+    b.addEventListener("click",(e)=>{
+      const id=e.target.dataset.del;
+      rec.tasks = rec.tasks.filter(x=>x.id!==id);
+      persist(rec);
+      renderTasks(rec);
+      updateDashboard(rec);
+    });
+  });
+
+  tasksEl.querySelectorAll("[contenteditable='true']").forEach(ed=>{
+    ed.addEventListener("input",(e)=>{
+      const id=e.target.dataset.id;
+      const field=e.target.dataset.edit;
+      const t=rec.tasks.find(x=>x.id===id);
+      if(!t) return;
+      t[field] = e.target.textContent.trim();
+      persist(rec);
+    });
+  });
+}
+
+function bindMont(rec){
+  function syncToUI(){
+    mont.done.checked = !!rec.mont.done;
+    mont.hours.value = rec.mont.hours ?? 0;
+    mont.hoursGoal.value = rec.mont.hoursGoal ?? (modeEl.value==="ramadan"?1:2);
+    mont.dms.value = rec.mont.dms ?? 0;
+    mont.dmsGoal.value = rec.mont.dmsGoal ?? 20;
+    mont.fu.value = rec.mont.fu ?? 0;
+    mont.fuGoal.value = rec.mont.fuGoal ?? 10;
+    mont.leads.value = rec.mont.leads ?? 0;
+  }
+  syncToUI();
+
+  const handler = ()=>{
+    rec.mont.done = mont.done.checked;
+    rec.mont.hours = num(mont.hours.value);
+    rec.mont.hoursGoal = num(mont.hoursGoal.value);
+    rec.mont.dms = num(mont.dms.value);
+    rec.mont.dmsGoal = num(mont.dmsGoal.value);
+    rec.mont.fu = num(mont.fu.value);
+    rec.mont.fuGoal = num(mont.fuGoal.value);
+    rec.mont.leads = num(mont.leads.value);
+    persist(rec);
+    updateDashboard(rec);
+  };
+
+  [mont.done, mont.hours, mont.hoursGoal, mont.dms, mont.dmsGoal, mont.fu, mont.fuGoal, mont.leads]
+    .forEach(el => el.addEventListener("input", handler));
+}
+
+function calcScore(rec){
+  const total = rec.tasks.length + 1;
+  const doneTasks = rec.tasks.filter(t=>t.done).length;
+  const done = doneTasks + (rec.mont.done ? 1 : 0);
+  const pct = total ? Math.round((done/total)*100) : 0;
+  return {total, done, pct};
+}
+
+function calcNoScrollStreak(all){
+  const keys = Object.keys(all).sort();
+  const map = {};
+  for(const k of keys){
+    const [d] = k.split("__");
+    const rec = all[k];
+    const t = (rec.tasks||[]).find(x=>x.streakKey==="noScroll");
+    if(t) map[d] = map[d] || t.done;
+  }
+  const today = dateEl.value;
+  let streak=0;
+  for(let i=0; i<365; i++){
+    const dt = new Date(today + "T00:00:00");
+    dt.setDate(dt.getDate() - i);
+    const iso = dt.toISOString().slice(0,10);
+    if(map[iso]) streak++;
+    else break;
+  }
+  return streak;
+}
+
+function updateDashboard(rec){
+  const all = getAll();
+  const {total, done, pct} = calcScore(rec);
+
+  kDone.textContent = done;
+  kTotal.textContent = total;
+  kLeads.textContent = rec.mont.leads ?? 0;
+
+  const streak = calcNoScrollStreak(all);
+  kStreak.textContent = streak;
+
+  scoreText.textContent = pct + "%";
+  scoreHint.textContent = pct>=80 ? "Strong day 💪" : (pct>=50 ? "Keep pushing" : "Start small, win");
+
+  drawRing(pct);
+}
+
+function drawRing(pct){
+  const ctx = ring.getContext("2d");
+  const size = ring.width = ring.height = 74;
+  const cx = size/2, cy = size/2;
+  const r = 28;
+  ctx.clearRect(0,0,size,size);
+
+  ctx.beginPath();
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = "rgba(155,176,201,.22)";
+  ctx.arc(cx,cy,r,0,Math.PI*2);
+  ctx.stroke();
+
+  const start = -Math.PI/2;
+  const end = start + (Math.PI*2)*(pct/100);
+  ctx.beginPath();
+  ctx.strokeStyle = pct>=80 ? "#34d399" : (pct>=50 ? "#fbbf24" : "#fb7185");
+  ctx.lineCap = "round";
+  ctx.arc(cx,cy,r,start,end);
+  ctx.stroke();
+
+  ctx.fillStyle = "rgba(232,240,255,.92)";
+  ctx.font = "700 14px ui-sans-serif, system-ui";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(pct + "%", cx, cy);
+}
+
+function currentRec(){
+  const all = getAll();
+  const rec = ensureDayRecord(all, dateEl.value, modeEl.value);
+  setAll(all);
+  return rec;
+}
+function persist(rec){
+  const all = getAll();
+  const key = dayKey(dateEl.value, modeEl.value);
+  all[key] = rec;
+  setAll(all);
+}
+
+notesEl.addEventListener("input", ()=>{
+  const rec = currentRec();
+  rec.notes = notesEl.value;
+  persist(rec);
+});
+
+document.getElementById("printBtn").addEventListener("click", ()=>window.print());
+
+document.getElementById("addSlotBtn").addEventListener("click", ()=>{
+  const rec=currentRec();
+  rec.slots.push({time:"", task:""});
+  persist(rec);
+  renderSlots(rec);
+});
+
+document.getElementById("resetSlotsBtn").addEventListener("click", ()=>{
+  const rec=currentRec();
+  if(confirm("Reset timetable slots to default for this mode?")){
+    rec.slots = JSON.parse(JSON.stringify(DEFAULT_SLOTS[modeEl.value]));
+    persist(rec);
+    renderSlots(rec);
+  }
+});
+
+document.getElementById("addTaskBtn").addEventListener("click", ()=>{
+  const rec=currentRec();
+  const title = prompt("Task name (e.g., Montvero 2 hrs / 20 LinkedIn DMs / Quran 2 pages):");
+  if(!title) return;
+  const category = prompt("Category (Deen / Skills / Business / Health / Discipline):", "General") || "General";
+  rec.tasks.unshift({id:uid(), title:title.trim(), category:category.trim(), done:false});
+  persist(rec);
+  renderTasks(rec);
+  updateDashboard(rec);
+});
+
+document.getElementById("resetMontBtn").addEventListener("click", ()=>{
+  const rec=currentRec();
+  rec.mont = defaultMontGoals(modeEl.value);
+  persist(rec);
+  bindMont(rec);
+  updateDashboard(rec);
+});
+
+document.getElementById("resetBtn").addEventListener("click", ()=>{
+  const all=getAll();
+  const key=dayKey(dateEl.value, modeEl.value);
+  if(confirm("Reset this day (current mode) completely?")){
+    delete all[key];
+    setAll(all);
+    loadDay();
+  }
+});
+
+document.getElementById("exportBtn").addEventListener("click", ()=>{
+  const data = localStorage.getItem(LS_KEY) || "{}";
+  const blob = new Blob([data], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "naeem-life-os-backup.json";
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById("importBtn").addEventListener("click", ()=>{
+  const inp=document.createElement("input");
+  inp.type="file"; inp.accept="application/json";
+  inp.onchange=()=>{
+    const f=inp.files[0];
+    if(!f) return;
+    const r=new FileReader();
+    r.onload=()=>{
+      try{
+        JSON.parse(r.result);
+        localStorage.setItem(LS_KEY, r.result);
+        toast("Imported ✅");
+        loadDay();
+      }catch(e){ alert("Invalid JSON."); }
+    };
+    r.readAsText(f);
+  };
+  inp.click();
+});
+
+dateEl.addEventListener("change", ()=>{
+  modeEl.value = defaultModeForDate(dateEl.value);
+  loadDay();
+});
+modeEl.addEventListener("change", loadDay);
+
+function loadDay(){
+  const all=getAll();
+  const rec = ensureDayRecord(all, dateEl.value, modeEl.value);
+  setAll(all);
+
+  notesEl.value = rec.notes || "";
+  renderSlots(rec);
+  renderTasks(rec);
+  bindMont(rec);
+  renderWeekly();
+  updateDashboard(rec);
+}
+
+dateEl.value = todayISO();
+modeEl.value = defaultModeForDate(dateEl.value);
+loadDay();
+drawRing(0);
+</script>
+</body>
+</html>

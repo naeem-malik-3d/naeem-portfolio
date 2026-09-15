@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Solutions Catalogue 2025-26</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#08111e;--ink2:#12203a;--ink3:#2a3d58;
+  --paper:#f8f7f2;--paper2:#f1efe8;--paper3:#e6e2d6;
+  --gold:#b8860b;--gold2:#d4a017;--gold3:#f0c040;
+  --accent:#1a3a6e;--accent2:#2952a3;--accent3:#5080c8;
+  --red:#b83232;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--paper3);}::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ── COVER ── */
+.cover{min-height:100vh;background:var(--ink);display:flex;flex-direction:column;position:relative;overflow:hidden;}
+.cover-noise{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.cover-glow{position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 50% -10%,rgba(184,134,11,.18),transparent 60%),radial-gradient(ellipse 50% 80% at -5% 90%,rgba(26,58,110,.45),transparent);}
+.cover-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,134,11,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(184,134,11,.05) 1px,transparent 1px);background-size:52px 52px;}
+.cover-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:36px 56px;border-bottom:1px solid rgba(184,134,11,.18);}
+.c-brand{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:5px;color:rgba(184,134,11,.8);text-transform:uppercase;}
+.c-year{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.25);}
+.cover-body{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:64px 56px;}
+.c-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:6px;color:var(--gold3);text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:14px;}
+.c-eyebrow::before{content:'';width:48px;height:1px;background:var(--gold);}
+.c-h1{font-family:'Playfair Display',serif;font-size:clamp(52px,9vw,108px);font-weight:900;color:#fff;line-height:.95;letter-spacing:-3px;margin-bottom:10px;}
+.c-h1 em{color:var(--gold3);font-style:italic;}
+.c-h2{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,52px);font-weight:400;color:rgba(255,255,255,.35);letter-spacing:-1px;margin-bottom:52px;font-style:italic;}
+.c-rule{width:72px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:40px;}
+.c-desc{font-size:17px;color:rgba(255,255,255,.45);line-height:1.85;max-width:540px;margin-bottom:56px;font-weight:300;letter-spacing:.2px;}
+.c-stats{display:flex;gap:56px;flex-wrap:wrap;}
+.cs{}.cs-n{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;color:var(--gold3);line-height:1;}
+.cs-l{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;color:rgba(255,255,255,.28);text-transform:uppercase;margin-top:6px;}
+.cover-foot{position:relative;z-index:2;padding:28px 56px;border-top:1px solid rgba(184,134,11,.12);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.cf-tag{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.3);}
+.cf-contact{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(184,134,11,.7);}
+
+/* ── TOC ── */
+.toc{background:var(--paper2);padding:88px 56px;position:relative;}
+.toc::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--accent),var(--gold2),var(--accent2));}
+.s-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:14px;}
+.s-label::after{content:'';width:52px;height:1px;background:var(--gold);opacity:.45;}
+.toc-h{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,62px);font-weight:700;color:var(--ink);letter-spacing:-2px;margin-bottom:16px;line-height:1.05;}
+.toc-intro{font-size:16px;color:var(--ink3);line-height:1.85;max-width:640px;margin-bottom:60px;font-weight:300;}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:3px;}
+.toc-i{background:var(--paper);padding:22px 28px;display:flex;align-items:center;gap:20px;text-decoration:none;color:inherit;border-left:3px solid transparent;transition:all .25s;}
+.toc-i:hover{background:#fff;border-left-color:var(--gold);transform:translateX(5px);}
+.toc-n{font-family:'Playfair Display',serif;font-style:italic;font-size:32px;font-weight:400;color:var(--gold);line-height:1;flex-shrink:0;width:44px;}
+.toc-cat{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:.2px;margin-bottom:3px;}
+.toc-cnt{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--ink3);}
+
+/* ── CATEGORY SECTION ── */
+.cat{padding:88px 56px;position:relative;}
+.cat:nth-child(odd){background:var(--paper);}
+.cat:nth-child(even){background:var(--paper2);}
+.cat-hdr{margin-bottom:56px;padding-bottom:36px;border-bottom:1px solid var(--paper3);position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.cat-hdr::after{content:'';position:absolute;bottom:-1px;left:0;width:88px;height:2px;background:var(--gold);}
+.cat-hdr-left{}
+.cat-eye2{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:12px;}
+.cat-h{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;color:var(--ink);letter-spacing:-1.5px;line-height:1.05;margin-bottom:14px;}
+.cat-desc{font-size:15px;color:var(--ink3);line-height:1.8;max-width:520px;font-weight:300;}
+.cat-bg-n{font-family:'Playfair Display',serif;font-style:italic;font-size:120px;font-weight:900;color:var(--paper3);line-height:1;flex-shrink:0;pointer-events:none;user-select:none;}
+
+/* ── PRODUCT CARDS — LARGE CATALOGUE STYLE ── */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;}
+.prod-card{background:#fff;border:1px solid var(--paper3);padding:0;transition:all .35s;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.prod-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--accent3));transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.prod-card:hover::after{transform:scaleX(1);}
+.prod-card:hover{border-color:rgba(184,134,11,.35);box-shadow:0 12px 40px rgba(184,134,11,.12);transform:translateY(-3px);}
+.prod-card-top{padding:28px 24px 22px;flex:1;}
+.prod-icon-wrap{width:52px;height:52px;background:linear-gradient(135deg,var(--paper2),var(--paper3));border:1px solid var(--paper3);display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--accent);flex-shrink:0;}
+.prod-name{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--ink);line-height:1.25;margin-bottom:10px;letter-spacing:-.3px;}
+.prod-detail{font-size:13px;color:var(--ink3);line-height:1.7;font-weight:300;}
+.prod-card-foot{padding:14px 24px;border-top:1px solid var(--paper3);background:var(--paper2);display:flex;align-items:center;justify-content:space-between;}
+.prod-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;}
+.prod-pop-badge{background:var(--gold);color:#fff;font-family:'DM Mono',monospace;font-size:7px;letter-spacing:1px;padding:3px 8px;text-transform:uppercase;}
+
+/* ── FEATURED (wider 2-col cards) ── */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
+.feat-card{background:#fff;border:1px solid var(--paper3);padding:32px 28px;display:flex;gap:22px;transition:all .3s;position:relative;overflow:hidden;}
+.feat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--accent3));transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.feat-card:hover::after{transform:scaleX(1);}
+.feat-card:hover{border-color:rgba(184,134,11,.3);box-shadow:0 12px 40px rgba(184,134,11,.1);transform:translateY(-3px);}
+.feat-icon{width:56px;height:56px;flex-shrink:0;background:linear-gradient(135deg,rgba(26,58,110,.08),rgba(26,58,110,.03));border:1px solid rgba(26,58,110,.12);display:flex;align-items:center;justify-content:center;color:var(--accent);}
+.feat-content{}
+.feat-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.2;letter-spacing:-.3px;}
+.feat-desc{font-size:13px;color:var(--ink3);line-height:1.75;font-weight:300;margin-bottom:10px;}
+.feat-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent2);text-transform:uppercase;}
+
+/* ── WHY US ── */
+.why{background:var(--ink);padding:88px 56px;position:relative;overflow:hidden;}
+.why::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(184,134,11,.14),transparent);}
+.why::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(184,134,11,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(184,134,11,.03) 1px,transparent 1px);background-size:52px 52px;}
+.why-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.why-h{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,58px);font-weight:700;color:#fff;letter-spacing:-1.5px;line-height:1.05;margin-bottom:20px;}
+.why-h em{color:var(--gold3);font-style:italic;}
+.why-sub{font-size:16px;color:rgba(255,255,255,.42);line-height:1.85;font-weight:300;margin-bottom:36px;}
+.why-pts{display:flex;flex-direction:column;gap:20px;}
+.wp{display:flex;gap:18px;align-items:flex-start;}
+.wp-n{font-family:'Playfair Display',serif;font-style:italic;font-size:28px;font-weight:700;color:var(--gold3);flex-shrink:0;line-height:1;width:36px;}
+.wp-t{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px;}
+.wp-d{font-size:12px;color:rgba(255,255,255,.4);line-height:1.65;font-weight:300;}
+.why-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.ws{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);padding:28px 22px;text-align:center;}
+.ws-n{font-family:'Playfair Display',serif;font-size:42px;font-weight:700;color:var(--gold3);line-height:1;margin-bottom:8px;}
+.ws-l{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.28);text-transform:uppercase;line-height:1.5;}
+
+/* ── CTA ── */
+.cta{background:var(--paper2);padding:88px 56px;text-align:center;position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(184,134,11,.07),transparent 70%);}
+.cta-eye{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:6px;color:var(--gold);text-transform:uppercase;margin-bottom:18px;}
+.cta-h{font-family:'Playfair Display',serif;font-size:clamp(40px,6.5vw,72px);font-weight:700;color:var(--ink);letter-spacing:-2.5px;line-height:1;margin-bottom:18px;}
+.cta-h em{color:var(--gold);font-style:italic;}
+.cta-sub{font-size:17px;color:var(--ink3);line-height:1.8;max-width:500px;margin:0 auto 52px;font-weight:300;}
+.cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:56px;}
+.btn-p{background:var(--ink);color:#fff;padding:17px 40px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block;}
+.btn-p:hover{background:var(--accent);}
+.btn-s{background:transparent;color:var(--ink);padding:16px 40px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--ink3);cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block;}
+.btn-s:hover{border-color:var(--gold);color:var(--gold);}
+.cta-contacts{display:flex;justify-content:center;gap:56px;flex-wrap:wrap;}
+.cc-l{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--ink3);text-transform:uppercase;margin-bottom:5px;}
+.cc-v{font-size:17px;font-weight:600;color:var(--ink);}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);padding:32px 56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.ft-b{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:#fff;letter-spacing:-.5px;}
+.ft-b em{color:var(--gold3);font-style:italic;}
+.ft-c{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.2);text-transform:uppercase;}
+.ft-contact{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:rgba(184,134,11,.7);}
+
+@media(max-width:768px){
+  .cover-top,.cover-body,.cover-foot,.toc,.cat,.why,.cta,footer{padding-left:24px;padding-right:24px;}
+  .why-inner{grid-template-columns:1fr;}
+  .why-stats{display:none;}
+  .toc-grid,.feat-grid{grid-template-columns:1fr;}
+  .cat-bg-n{display:none;}
+  .c-stats{gap:32px;}
+}
+@media(max-width:520px){
+  .prod-grid{grid-template-columns:1fr;}
+}
+
+.img-zone{width:100%;height:165px;background:var(--paper2);border-bottom:1px solid var(--paper3);cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:background .2s;}
+.img-zone:hover{background:var(--paper3);}
+.cph{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.iph{display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--ink3);pointer-events:none;transition:color .2s;}
+.iph span{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;}
+.img-zone:hover .iph{color:var(--gold2);}
+.fimg-zone{width:130px;min-height:100px;background:var(--paper2);border:1px solid var(--paper3);cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0;transition:background .2s;}
+.fimg-zone:hover{background:var(--paper3);}
+.fph{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.fimg-zone:hover .iph{color:var(--gold2);}
+#abar{position:fixed;bottom:0;left:0;right:0;background:var(--ink);border-top:3px solid var(--gold);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;z-index:9999;box-shadow:0 -4px 32px rgba(0,0,0,.4);}
+.ab-l{}.ab-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:3px;}
+.ab-count{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--gold3);}
+.ab-cnt-l{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;color:rgba(255,255,255,.25);text-transform:uppercase;margin-left:6px;}
+.ab-btns{display:flex;gap:10px;align-items:center;}
+.ab-note{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;color:rgba(255,255,255,.2);text-transform:uppercase;max-width:200px;line-height:1.5;}
+.ab-btn{padding:10px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;}
+.ab-exp{background:var(--gold);color:var(--ink);font-weight:700;}
+.ab-exp:hover{background:var(--gold3);}
+.ab-clr{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);}
+.ab-clr:hover{color:#ff6666;border-color:#ff6666;}
+body{padding-bottom:80px;}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-noise"></div><div class="cover-glow"></div><div class="cover-grid"></div>
+  <div class="cover-top">
+    <div class="c-brand">[ Your Brand ] &mdash; School Solutions</div>
+    <div class="c-year">Catalogue 2025 &mdash; 2026</div>
+  </div>
+  <div class="cover-body">
+    <div class="c-eyebrow">Complete School Solutions</div>
+    <div class="c-h1">Everything<br><em>Your School</em></div>
+    <div class="c-h2">Needs. Delivered.</div>
+    <div class="c-rule"></div>
+    <div class="c-desc">From ID cards to annual day branding &mdash; one vendor, consistent quality, on-time delivery. We handle everything so your school can focus on education.</div>
+    <div class="c-stats">
+      <div class="cs"><div class="cs-n">12</div><div class="cs-l">Service Categories</div></div>
+      <div class="cs"><div class="cs-n">100+</div><div class="cs-l">Products &amp; Services</div></div>
+      <div class="cs"><div class="cs-n">1</div><div class="cs-l">Vendor. All Done.</div></div>
+    </div>
+  </div>
+  <div class="cover-foot">
+    <div class="cf-tag">&ldquo;One School. One Vendor. Everything.&rdquo;</div>
+    <div class="cf-contact">Contact: [Your Phone] &middot; [Your Email]</div>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="toc">
+  <div class="s-label">Index</div>
+  <div class="toc-h">What We Offer</div>
+  <div class="toc-intro">A complete ecosystem of products and services designed for schools &mdash; everything customisable with your school&rsquo;s branding, colours, and logo.</div>
+  <div class="toc-grid">
+    <a href="#c1" class="toc-i"><div class="toc-n">01</div><div><div class="toc-cat">Identity &amp; Documentation</div><div class="toc-cnt">13 Products</div></div></a>
+    <a href="#c2" class="toc-i"><div class="toc-n">02</div><div><div class="toc-cat">Uniforms &amp; Wearables</div><div class="toc-cnt">11 Products</div></div></a>
+    <a href="#c3" class="toc-i"><div class="toc-n">03</div><div><div class="toc-cat">Bags &amp; Accessories</div><div class="toc-cnt">6 Products</div></div></a>
+    <a href="#c4" class="toc-i"><div class="toc-n">04</div><div><div class="toc-cat">Stationery &amp; Supplies</div><div class="toc-cnt">12 Products</div></div></a>
+    <a href="#c5" class="toc-i"><div class="toc-n">05</div><div><div class="toc-cat">Printing &amp; Branding</div><div class="toc-cnt">12 Products</div></div></a>
+    <a href="#c6" class="toc-i"><div class="toc-n">06</div><div><div class="toc-cat">Banners &amp; Display</div><div class="toc-cnt">12 Products</div></div></a>
+    <a href="#c7" class="toc-i"><div class="toc-n">07</div><div><div class="toc-cat">Events &amp; Functions</div><div class="toc-cnt">6 Packages</div></div></a>
+    <a href="#c8" class="toc-i"><div class="toc-n">08</div><div><div class="toc-cat">Awards &amp; Recognition</div><div class="toc-cnt">10 Products</div></div></a>
+    <a href="#c9" class="toc-i"><div class="toc-n">09</div><div><div class="toc-cat">Digital Services</div><div class="toc-cnt">6 Services</div></div></a>
+    <a href="#c10" class="toc-i"><div class="toc-n">10</div><div><div class="toc-cat">Gifting &amp; Merchandise</div><div class="toc-cnt">10 Products</div></div></a>
+    <a href="#c11" class="toc-i"><div class="toc-n">11</div><div><div class="toc-cat">Safety &amp; Compliance</div><div class="toc-cnt">6 Products</div></div></a>
+    <a href="#c12" class="toc-i"><div class="toc-n">12</div><div><div class="toc-cat">Classroom Supplies</div><div class="toc-cnt">8 Products</div></div></a>
+  </div>
+</section>
+<section class="cat" id="c1">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 01</div>
+      <div class="cat-h">Identity &amp;<br>Documentation</div>
+      <div class="cat-desc">Every student and staff member needs a professional identity. We produce high-quality cards, registers, and official documents with your school&rsquo;s branding.</div>
+    </div>
+    <div class="cat-bg-n">01</div>
+  </div>
+  <div class="prod-grid"><div class="prod-card" data-cid="p1">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p1" onclick="trigUp('p1')"><img class="cph" id="ci_p1" style="display:none" src=""><div class="iph" id="ph_p1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p1" onchange="handleImg('p1',this)" style="display:none"></div>
+    
+    <div class="prod-name">Student ID Cards</div>
+    <div class="prod-detail">Photo, name, class, QR code / barcode. Available in PVC, paper laminated, or RFID smart cards.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">PVC &middot; QR Code &middot; RFID</div>
+    <div class="prod-pop-badge">&#9733; Popular</div>
+  </div>
+</div><div class="prod-card" data-cid="p2">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p2" onclick="trigUp('p2')"><img class="cph" id="ci_p2" style="display:none" src=""><div class="iph" id="ph_p2"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p2" onchange="handleImg('p2',this)" style="display:none"></div>
+    
+    <div class="prod-name">Staff ID Cards</div>
+    <div class="prod-detail">Designation, department, contact. Matching design with student cards for unified school look.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">With Designation</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p3">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p3" onclick="trigUp('p3')"><img class="cph" id="ci_p3" style="display:none" src=""><div class="iph" id="ph_p3"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p3" onchange="handleImg('p3',this)" style="display:none"></div>
+    
+    <div class="prod-name">Visitor &amp; Gate Pass Cards</div>
+    <div class="prod-detail">Temporary pass cards for parents, vendors, and visitors. Enhances school security.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Security Essential</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p4">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p4" onclick="trigUp('p4')"><img class="cph" id="ci_p4" style="display:none" src=""><div class="iph" id="ph_p4"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p4" onchange="handleImg('p4',this)" style="display:none"></div>
+    
+    <div class="prod-name">Library Cards</div>
+    <div class="prod-detail">Barcode-enabled cards for book tracking. Matches school branding.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">With Barcode</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p5">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p5" onclick="trigUp('p5')"><img class="cph" id="ci_p5" style="display:none" src=""><div class="iph" id="ph_p5"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p5" onchange="handleImg('p5',this)" style="display:none"></div>
+    
+    <div class="prod-name">Bus Pass Cards</div>
+    <div class="prod-detail">Route number, stop name, student photo. Makes bus management easy.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Route Specific</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p6">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p6" onclick="trigUp('p6')"><img class="cph" id="ci_p6" style="display:none" src=""><div class="iph" id="ph_p6"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p6" onchange="handleImg('p6',this)" style="display:none"></div>
+    
+    <div class="prod-name">Admission Forms</div>
+    <div class="prod-detail">Custom layout with school logo. Multi-copy carbonless or single sheet.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Custom Layout</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p7">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p7" onclick="trigUp('p7')"><img class="cph" id="ci_p7" style="display:none" src=""><div class="iph" id="ph_p7"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p7" onchange="handleImg('p7',this)" style="display:none"></div>
+    
+    <div class="prod-name">Fee Receipt Books</div>
+    <div class="prod-detail">Numbered receipt booklets with school letterhead. Carbonless duplicate copies.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Numbered Series</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p8">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p8" onclick="trigUp('p8')"><img class="cph" id="ci_p8" style="display:none" src=""><div class="iph" id="ph_p8"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p8" onchange="handleImg('p8',this)" style="display:none"></div>
+    
+    <div class="prod-name">Transfer Certificates</div>
+    <div class="prod-detail">Officially formatted TC booklets with school seal space and serial numbers.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Official Format</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p9">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p9" onclick="trigUp('p9')"><img class="cph" id="ci_p9" style="display:none" src=""><div class="iph" id="ph_p9"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p9" onchange="handleImg('p9',this)" style="display:none"></div>
+    
+    <div class="prod-name">Attendance Registers</div>
+    <div class="prod-detail">Class-wise printed registers with student name lists, dates, and signature columns.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Class-wise</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p10">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p10" onclick="trigUp('p10')"><img class="cph" id="ci_p10" style="display:none" src=""><div class="iph" id="ph_p10"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p10" onchange="handleImg('p10',this)" style="display:none"></div>
+    
+    <div class="prod-name">Mark Sheets &amp; Report Cards</div>
+    <div class="prod-detail">Custom format as per school's grading system — term-wise, annual, or cumulative.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Custom Format</div>
+    <div class="prod-pop-badge">&#9733; Popular</div>
+  </div>
+</div><div class="prod-card" data-cid="p11">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p11" onclick="trigUp('p11')"><img class="cph" id="ci_p11" style="display:none" src=""><div class="iph" id="ph_p11"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p11" onchange="handleImg('p11',this)" style="display:none"></div>
+    
+    <div class="prod-name">Report Card Folders</div>
+    <div class="prod-detail">Branded envelope folders to hand over report cards professionally to parents.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Branded Envelope</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p12">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p12" onclick="trigUp('p12')"><img class="cph" id="ci_p12" style="display:none" src=""><div class="iph" id="ph_p12"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p12" onchange="handleImg('p12',this)" style="display:none"></div>
+    
+    <div class="prod-name">Hall Tickets &amp; Admit Cards</div>
+    <div class="prod-detail">Exam season essentials. Student photo, roll number, exam schedule — clean layout.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Exam Season</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p13">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p13" onclick="trigUp('p13')"><img class="cph" id="ci_p13" style="display:none" src=""><div class="iph" id="ph_p13"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p13" onchange="handleImg('p13',this)" style="display:none"></div>
+    
+    <div class="prod-name">Character Certificates</div>
+    <div class="prod-detail">Premium certificate paper with school seal. Official format with principal signature block.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Premium Paper</div>
+    <div></div>
+  </div>
+</div></div>
+</section><section class="cat" id="c2">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 02</div>
+      <div class="cat-h">Uniforms &amp;<br>Wearables</div>
+      <div class="cat-desc">Complete uniform solutions from summer to winter, sports to formal. All customised with your school&rsquo;s logo, colours, and name tag.</div>
+    </div>
+    <div class="cat-bg-n">02</div>
+  </div>
+  <div class="feat-grid"><div class="feat-card" data-cid="f1">
+  <div class="fimg-zone" id="iz_f1" onclick="trigUp('f1')"><img class="fph" id="ci_f1" style="display:none" src=""><div class="iph" id="ph_f1"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f1" onchange="handleImg('f1',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Summer Uniform Set</div>
+    <div class="feat-desc">Complete set — shirt, trouser/skirt/salwar with embroidered school logo and name tag. Available in all sizes from nursery to senior.</div>
+    <div class="feat-tag">Best Seller &middot; Full Range</div>
+  </div>
+</div><div class="feat-card" data-cid="f2">
+  <div class="fimg-zone" id="iz_f2" onclick="trigUp('f2')"><img class="fph" id="ci_f2" style="display:none" src=""><div class="iph" id="ph_f2"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f2" onchange="handleImg('f2',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Winter Blazer &amp; Sweater</div>
+    <div class="feat-desc">School-branded blazer with embroidered badge on chest pocket. V-neck sweater with logo patch. Premium wool-blend fabric.</div>
+    <div class="feat-tag">Season Special &middot; Oct&ndash;Feb</div>
+  </div>
+</div><div class="feat-card" data-cid="f3">
+  <div class="fimg-zone" id="iz_f3" onclick="trigUp('f3')"><img class="fph" id="ci_f3" style="display:none" src=""><div class="iph" id="ph_f3"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f3" onchange="handleImg('f3',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Sports &amp; PT Kit</div>
+    <div class="feat-desc">T-shirt and track pants with school name. Available in all four house colours for inter-house sports events.</div>
+    <div class="feat-tag">All House Colours</div>
+  </div>
+</div><div class="feat-card" data-cid="f4">
+  <div class="fimg-zone" id="iz_f4" onclick="trigUp('f4')"><img class="fph" id="ci_f4" style="display:none" src=""><div class="iph" id="ph_f4"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f4" onchange="handleImg('f4',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Staff &amp; Security Uniforms</div>
+    <div class="feat-desc">Professional uniforms for teaching staff, administrative staff, housekeeping, and security personnel. Consistent look.</div>
+    <div class="feat-tag">All Departments</div>
+  </div>
+</div></div><div class="prod-grid"><div class="prod-card" data-cid="p14">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p14" onclick="trigUp('p14')"><img class="cph" id="ci_p14" style="display:none" src=""><div class="iph" id="ph_p14"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p14" onchange="handleImg('p14',this)" style="display:none"></div>
+    
+    <div class="prod-name">School Tie</div>
+    <div class="prod-detail">Branded woven school tie in school colours. Clip-on option available for junior classes.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Woven &middot; Clip-on Option</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p15">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p15" onclick="trigUp('p15')"><img class="cph" id="ci_p15" style="display:none" src=""><div class="iph" id="ph_p15"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p15" onchange="handleImg('p15',this)" style="display:none"></div>
+    
+    <div class="prod-name">School Socks</div>
+    <div class="prod-detail">Logo or school name embroidered on socks. Available in white, black, and school colours.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Embroidered Logo</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p16">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p16" onclick="trigUp('p16')"><img class="cph" id="ci_p16" style="display:none" src=""><div class="iph" id="ph_p16"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p16" onchange="handleImg('p16',this)" style="display:none"></div>
+    
+    <div class="prod-name">School Belt</div>
+    <div class="prod-detail">Sturdy belt with custom school logo metal buckle. Fits all sizes.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Logo Buckle</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p17">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p17" onclick="trigUp('p17')"><img class="cph" id="ci_p17" style="display:none" src=""><div class="iph" id="ph_p17"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p17" onchange="handleImg('p17',this)" style="display:none"></div>
+    
+    <div class="prod-name">Caps &amp; Hats</div>
+    <div class="prod-detail">Branded caps for sports day, field trips, and annual events. Available in house colours.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Events &amp; Sports</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p18">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p18" onclick="trigUp('p18')"><img class="cph" id="ci_p18" style="display:none" src=""><div class="iph" id="ph_p18"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p18" onchange="handleImg('p18',this)" style="display:none"></div>
+    
+    <div class="prod-name">Lab &amp; Art Aprons</div>
+    <div class="prod-detail">Durable aprons for science lab and art class. School name printed on front.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Science &amp; Art</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p19">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p19" onclick="trigUp('p19')"><img class="cph" id="ci_p19" style="display:none" src=""><div class="iph" id="ph_p19"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p19" onchange="handleImg('p19',this)" style="display:none"></div>
+    
+    <div class="prod-name">Farewell Batch Jacket</div>
+    <div class="prod-detail">Custom printed jacket for passing out batch — batch name, year, school logo. Memorable keepsake.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Passing Out Batch</div>
+    <div></div>
+  </div>
+</div></div>
+</section><section class="cat" id="c3">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 03</div>
+      <div class="cat-h">Bags &amp;<br>Accessories</div>
+      <div class="cat-desc">Branded bags and accessories students carry every day — your school&rsquo;s best walking advertisement and a revenue-generating opportunity.</div>
+    </div>
+    <div class="cat-bg-n">03</div>
+  </div>
+  <div class="prod-grid"><div class="prod-card" data-cid="p20">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p20" onclick="trigUp('p20')"><img class="cph" id="ci_p20" style="display:none" src=""><div class="iph" id="ph_p20"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p20" onchange="handleImg('p20',this)" style="display:none"></div>
+    
+    <div class="prod-name">School Backpack</div>
+    <div class="prod-detail">Durable backpack with school logo heat-pressed or embroidered. Multiple compartments. All age sizes available.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Logo Printed &middot; All Sizes</div>
+    <div class="prod-pop-badge">&#9733; Popular</div>
+  </div>
+</div><div class="prod-card" data-cid="p21">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p21" onclick="trigUp('p21')"><img class="cph" id="ci_p21" style="display:none" src=""><div class="iph" id="ph_p21"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p21" onchange="handleImg('p21',this)" style="display:none"></div>
+    
+    <div class="prod-name">Library Bag</div>
+    <div class="prod-detail">Tote-style bag for carrying library books. School name and library rules printed inside.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Tote Style</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p22">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p22" onclick="trigUp('p22')"><img class="cph" id="ci_p22" style="display:none" src=""><div class="iph" id="ph_p22"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p22" onchange="handleImg('p22',this)" style="display:none"></div>
+    
+    <div class="prod-name">Lunch &amp; Tiffin Bag</div>
+    <div class="prod-detail">Insulated tiffin bag with school logo. Keeps food warm. Easy-clean interior lining.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Insulated Interior</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p23">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p23" onclick="trigUp('p23')"><img class="cph" id="ci_p23" style="display:none" src=""><div class="iph" id="ph_p23"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p23" onchange="handleImg('p23',this)" style="display:none"></div>
+    
+    <div class="prod-name">Pencil Pouch</div>
+    <div class="prod-detail">Zippered pencil pouch with school name or logo printed. Matches uniform colours.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Branded Print</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p24">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p24" onclick="trigUp('p24')"><img class="cph" id="ci_p24" style="display:none" src=""><div class="iph" id="ph_p24"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p24" onchange="handleImg('p24',this)" style="display:none"></div>
+    
+    <div class="prod-name">Sports Kit Bag</div>
+    <div class="prod-detail">Duffle-style bag for carrying PT kit, sports shoes, and equipment. Name and logo printed.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Duffle Style</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p25">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p25" onclick="trigUp('p25')"><img class="cph" id="ci_p25" style="display:none" src=""><div class="iph" id="ph_p25"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p25" onchange="handleImg('p25',this)" style="display:none"></div>
+    
+    <div class="prod-name">Trip &amp; Excursion Bag</div>
+    <div class="prod-detail">School name clearly printed for easy identification on excursions. Bright colours available.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">School Name Print</div>
+    <div></div>
+  </div>
+</div></div>
+</section><section class="cat" id="c4">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 04</div>
+      <div class="cat-h">Stationery &amp;<br>Supplies</div>
+      <div class="cat-desc">Premium branded stationery that students use every single day. High-volume repeat orders every new session make this a consistent revenue source.</div>
+    </div>
+    <div class="cat-bg-n">04</div>
+  </div>
+  <div class="prod-grid"><div class="prod-card" data-cid="p26">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p26" onclick="trigUp('p26')"><img class="cph" id="ci_p26" style="display:none" src=""><div class="iph" id="ph_p26"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p26" onchange="handleImg('p26',this)" style="display:none"></div>
+    
+    <div class="prod-name">School Diary &amp; Planner</div>
+    <div class="prod-detail">Daily/weekly planner with school timetable, rules, important dates, and holiday list. Custom cover design.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Daily &middot; Weekly Options</div>
+    <div class="prod-pop-badge">&#9733; Popular</div>
+  </div>
+</div><div class="prod-card" data-cid="p27">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p27" onclick="trigUp('p27')"><img class="cph" id="ci_p27" style="display:none" src=""><div class="iph" id="ph_p27"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p27" onchange="handleImg('p27',this)" style="display:none"></div>
+    
+    <div class="prod-name">Branded Notebooks</div>
+    <div class="prod-detail">All sizes &mdash; A4, A5, single-line, double-line, four-line. Custom school cover with logo.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">All Sizes &amp; Rulings</div>
+    <div class="prod-pop-badge">&#9733; Popular</div>
+  </div>
+</div><div class="prod-card" data-cid="p28">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p28" onclick="trigUp('p28')"><img class="cph" id="ci_p28" style="display:none" src=""><div class="iph" id="ph_p28"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p28" onchange="handleImg('p28',this)" style="display:none"></div>
+    
+    <div class="prod-name">Exercise Books</div>
+    <div class="prod-detail">80-page exercise books with school branded cover. Available in all standard rulings.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">School Cover</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p29">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p29" onclick="trigUp('p29')"><img class="cph" id="ci_p29" style="display:none" src=""><div class="iph" id="ph_p29"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p29" onchange="handleImg('p29',this)" style="display:none"></div>
+    
+    <div class="prod-name">Drawing Books</div>
+    <div class="prod-detail">A3 and A4 blank drawing books with school name on cover. Thick cartridge paper.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Art Classes</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p30">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p30" onclick="trigUp('p30')"><img class="cph" id="ci_p30" style="display:none" src=""><div class="iph" id="ph_p30"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p30" onchange="handleImg('p30',this)" style="display:none"></div>
+    
+    <div class="prod-name">Practical Notebooks</div>
+    <div class="prod-detail">Science, biology, chemistry practical records with school header on each page.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Science &middot; Bio</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p31">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p31" onclick="trigUp('p31')"><img class="cph" id="ci_p31" style="display:none" src=""><div class="iph" id="ph_p31"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p31" onchange="handleImg('p31',this)" style="display:none"></div>
+    
+    <div class="prod-name">Graph Books</div>
+    <div class="prod-detail">Printed graph books with school name for maths and science practical sessions.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Maths &middot; Science</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p32">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p32" onclick="trigUp('p32')"><img class="cph" id="ci_p32" style="display:none" src=""><div class="iph" id="ph_p32"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p32" onchange="handleImg('p32',this)" style="display:none"></div>
+    
+    <div class="prod-name">Pens with School Logo</div>
+    <div class="prod-detail">Branded ballpoint pens with school name and website. Bulk supply for all students.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Bulk Supply</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p33">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p33" onclick="trigUp('p33')"><img class="cph" id="ci_p33" style="display:none" src=""><div class="iph" id="ph_p33"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p33" onchange="handleImg('p33',this)" style="display:none"></div>
+    
+    <div class="prod-name">Pencils with School Name</div>
+    <div class="prod-detail">HB and 2B pencils with school name printed. Supplied in branded box sets.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">HB &middot; 2B</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p34">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p34" onclick="trigUp('p34')"><img class="cph" id="ci_p34" style="display:none" src=""><div class="iph" id="ph_p34"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p34" onchange="handleImg('p34',this)" style="display:none"></div>
+    
+    <div class="prod-name">Geometry Box Set</div>
+    <div class="prod-detail">Complete geometry set in a custom box printed with school name and logo.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Custom Branded Box</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p35">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p35" onclick="trigUp('p35')"><img class="cph" id="ci_p35" style="display:none" src=""><div class="iph" id="ph_p35"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p35" onchange="handleImg('p35',this)" style="display:none"></div>
+    
+    <div class="prod-name">Crayons &amp; Colour Sets</div>
+    <div class="prod-detail">12/24-colour sets in a school-branded box. Wax crayons and colour pencils available.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Branded Box Set</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p36">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p36" onclick="trigUp('p36')"><img class="cph" id="ci_p36" style="display:none" src=""><div class="iph" id="ph_p36"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p36" onchange="handleImg('p36',this)" style="display:none"></div>
+    
+    <div class="prod-name">Rulers &amp; Stationery Set</div>
+    <div class="prod-detail">Ruler, eraser, sharpener set in school-branded packaging. Ideal for new session distribution.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Back-to-School Kit</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p37">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p37" onclick="trigUp('p37')"><img class="cph" id="ci_p37" style="display:none" src=""><div class="iph" id="ph_p37"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p37" onchange="handleImg('p37',this)" style="display:none"></div>
+    
+    <div class="prod-name">Art &amp; Craft Kit</div>
+    <div class="prod-detail">Complete kit with scissors, glue, chart sheets, and craft materials in a branded bag.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Complete Set</div>
+    <div></div>
+  </div>
+</div></div>
+</section><section class="cat" id="c5">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 05</div>
+      <div class="cat-h">Printing &amp;<br>Branding</div>
+      <div class="cat-desc">Official printed materials that represent your school to parents, students, and the wider community. Professional quality that builds trust.</div>
+    </div>
+    <div class="cat-bg-n">05</div>
+  </div>
+  <div class="prod-grid"><div class="prod-card" data-cid="p38">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p38" onclick="trigUp('p38')"><img class="cph" id="ci_p38" style="display:none" src=""><div class="iph" id="ph_p38"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p38" onchange="handleImg('p38',this)" style="display:none"></div>
+    
+    <div class="prod-name">School Prospectus</div>
+    <div class="prod-detail">Full-colour booklet showcasing school infrastructure, academics, faculty, and achievements. Best tool for admissions.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Admission Season</div>
+    <div class="prod-pop-badge">&#9733; Popular</div>
+  </div>
+</div><div class="prod-card" data-cid="p39">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p39" onclick="trigUp('p39')"><img class="cph" id="ci_p39" style="display:none" src=""><div class="iph" id="ph_p39"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p39" onchange="handleImg('p39',this)" style="display:none"></div>
+    
+    <div class="prod-name">Admission Brochure</div>
+    <div class="prod-detail">Tri-fold or bi-fold brochure for distribution at fairs, shops, and at the school gate.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Tri-fold &middot; Bi-fold</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p40">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p40" onclick="trigUp('p40')"><img class="cph" id="ci_p40" style="display:none" src=""><div class="iph" id="ph_p40"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p40" onchange="handleImg('p40',this)" style="display:none"></div>
+    
+    <div class="prod-name">Letterheads</div>
+    <div class="prod-detail">Professionally designed letterhead with school logo, address, CBSE/ICSE affiliation number.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Official Use</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p41">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p41" onclick="trigUp('p41')"><img class="cph" id="ci_p41" style="display:none" src=""><div class="iph" id="ph_p41"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p41" onchange="handleImg('p41',this)" style="display:none"></div>
+    
+    <div class="prod-name">Branded Envelopes</div>
+    <div class="prod-detail">Matching envelopes in all sizes — DL, C5, A4. Printed with school address and logo.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">All Sizes</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p42">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p42" onclick="trigUp('p42')"><img class="cph" id="ci_p42" style="display:none" src=""><div class="iph" id="ph_p42"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p42" onchange="handleImg('p42',this)" style="display:none"></div>
+    
+    <div class="prod-name">Visiting Cards</div>
+    <div class="prod-detail">For principal, vice principal, and senior staff. Premium card stock with school branding.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Staff &middot; Principal</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p43">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p43" onclick="trigUp('p43')"><img class="cph" id="ci_p43" style="display:none" src=""><div class="iph" id="ph_p43"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p43" onchange="handleImg('p43',this)" style="display:none"></div>
+    
+    <div class="prod-name">School Calendar</div>
+    <div class="prod-detail">Wall and desk calendars with school branding, holiday list, and exam schedule.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Wall &amp; Desk</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p44">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p44" onclick="trigUp('p44')"><img class="cph" id="ci_p44" style="display:none" src=""><div class="iph" id="ph_p44"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p44" onchange="handleImg('p44',this)" style="display:none"></div>
+    
+    <div class="prod-name">Fee Structure Booklet</div>
+    <div class="prod-detail">Annually printed fee booklet for parents. Professional and trusted presentation.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Annual Issue</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p45">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p45" onclick="trigUp('p45')"><img class="cph" id="ci_p45" style="display:none" src=""><div class="iph" id="ph_p45"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p45" onchange="handleImg('p45',this)" style="display:none"></div>
+    
+    <div class="prod-name">Exam Answer Sheets</div>
+    <div class="prod-detail">Answer sheets with school header, roll number block, and signature column on each page.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">School Header</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p46">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p46" onclick="trigUp('p46')"><img class="cph" id="ci_p46" style="display:none" src=""><div class="iph" id="ph_p46"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p46" onchange="handleImg('p46',this)" style="display:none"></div>
+    
+    <div class="prod-name">Notice &amp; Circular Pads</div>
+    <div class="prod-detail">Numbered carbonless pads for issuing circulars. Parent acknowledgement slip included.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Carbonless Duplicate</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p47">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p47" onclick="trigUp('p47')"><img class="cph" id="ci_p47" style="display:none" src=""><div class="iph" id="ph_p47"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p47" onchange="handleImg('p47',this)" style="display:none"></div>
+    
+    <div class="prod-name">Student Timetable Cards</div>
+    <div class="prod-detail">Pocket-size or A5 timetable cards printed for each class. Students carry daily.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Student Carry</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p48">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p48" onclick="trigUp('p48')"><img class="cph" id="ci_p48" style="display:none" src=""><div class="iph" id="ph_p48"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p48" onchange="handleImg('p48',this)" style="display:none"></div>
+    
+    <div class="prod-name">Annual School Magazine</div>
+    <div class="prod-detail">Full-colour printed school magazine with articles, photos, achievements, and student work.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">School Publication</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p49">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p49" onclick="trigUp('p49')"><img class="cph" id="ci_p49" style="display:none" src=""><div class="iph" id="ph_p49"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p49" onchange="handleImg('p49',this)" style="display:none"></div>
+    
+    <div class="prod-name">Event Invitation Cards</div>
+    <div class="prod-detail">Premium invitation cards for annual day, sports day, and special events. Gold foil option.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Premium Finish</div>
+    <div></div>
+  </div>
+</div></div>
+</section><section class="cat" id="c6">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 06</div>
+      <div class="cat-h">Banners &amp;<br>Display</div>
+      <div class="cat-desc">Make your school look professional and welcoming year-round. High-quality flex, vinyl, and standee printing for every occasion.</div>
+    </div>
+    <div class="cat-bg-n">06</div>
+  </div>
+  <div class="prod-grid"><div class="prod-card" data-cid="p50">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p50" onclick="trigUp('p50')"><img class="cph" id="ci_p50" style="display:none" src=""><div class="iph" id="ph_p50"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p50" onchange="handleImg('p50',this)" style="display:none"></div>
+    
+    <div class="prod-name">Admission Season Banner</div>
+    <div class="prod-detail">Large outdoor banner for school gate announcing admissions open. Season-critical item for every school.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Outdoor &middot; Large Format</div>
+    <div class="prod-pop-badge">&#9733; Popular</div>
+  </div>
+</div><div class="prod-card" data-cid="p51">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p51" onclick="trigUp('p51')"><img class="cph" id="ci_p51" style="display:none" src=""><div class="iph" id="ph_p51"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p51" onchange="handleImg('p51',this)" style="display:none"></div>
+    
+    <div class="prod-name">Welcome Back Banner</div>
+    <div class="prod-detail">&ldquo;Welcome to a new session&rdquo; banner for school entrance. Refreshes school look every year.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">New Session</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p52">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p52" onclick="trigUp('p52')"><img class="cph" id="ci_p52" style="display:none" src=""><div class="iph" id="ph_p52"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p52" onchange="handleImg('p52',this)" style="display:none"></div>
+    
+    <div class="prod-name">Permanent Gate Hoarding</div>
+    <div class="prod-detail">UV-protected permanent flex board for school name at gate. Professional appearance year-round.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">UV Protected</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p53">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p53" onclick="trigUp('p53')"><img class="cph" id="ci_p53" style="display:none" src=""><div class="iph" id="ph_p53"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p53" onchange="handleImg('p53',this)" style="display:none"></div>
+    
+    <div class="prod-name">Roll-up Standees</div>
+    <div class="prod-detail">X-frame or roll-up standees for reception, corridors, and events. Reusable with replaceable graphics.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Reception Area</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p54">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p54" onclick="trigUp('p54')"><img class="cph" id="ci_p54" style="display:none" src=""><div class="iph" id="ph_p54"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p54" onchange="handleImg('p54',this)" style="display:none"></div>
+    
+    <div class="prod-name">Classroom Name Plates</div>
+    <div class="prod-detail">Acrylic or flex name plates for each classroom &mdash; Class I to XII, Labs, Library, Office.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">All Rooms</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p55">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p55" onclick="trigUp('p55')"><img class="cph" id="ci_p55" style="display:none" src=""><div class="iph" id="ph_p55"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p55" onchange="handleImg('p55',this)" style="display:none"></div>
+    
+    <div class="prod-name">Safety &amp; Direction Signage</div>
+    <div class="prod-detail">Exit signs, fire evacuation maps, washroom directions, canteen directions. Required by CBSE.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">CBSE Required</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p56">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p56" onclick="trigUp('p56')"><img class="cph" id="ci_p56" style="display:none" src=""><div class="iph" id="ph_p56"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p56" onchange="handleImg('p56',this)" style="display:none"></div>
+    
+    <div class="prod-name">Motivational Quote Boards</div>
+    <div class="prod-detail">Inspirational quote boards for corridors, staircases, and classrooms. Positive learning environment.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Corridor &middot; Hallway</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p57">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p57" onclick="trigUp('p57')"><img class="cph" id="ci_p57" style="display:none" src=""><div class="iph" id="ph_p57"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p57" onchange="handleImg('p57',this)" style="display:none"></div>
+    
+    <div class="prod-name">Wall Decals &amp; Murals</div>
+    <div class="prod-detail">Large vinyl decals for walls &mdash; world map, periodic table, motivational art. Easy to apply.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Vinyl Sticker</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p58">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p58" onclick="trigUp('p58')"><img class="cph" id="ci_p58" style="display:none" src=""><div class="iph" id="ph_p58"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p58" onchange="handleImg('p58',this)" style="display:none"></div>
+    
+    <div class="prod-name">Notice Board Inserts</div>
+    <div class="prod-detail">Printed background panels for notice boards. Professionally printed instead of hand-written.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Printed Panels</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p59">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p59" onclick="trigUp('p59')"><img class="cph" id="ci_p59" style="display:none" src=""><div class="iph" id="ph_p59"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p59" onchange="handleImg('p59',this)" style="display:none"></div>
+    
+    <div class="prod-name">Sports Day Banners</div>
+    <div class="prod-detail">House-specific banners, finish line banner, scoreboard display, and event schedule board.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">House Colours</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p60">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p60" onclick="trigUp('p60')"><img class="cph" id="ci_p60" style="display:none" src=""><div class="iph" id="ph_p60"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p60" onchange="handleImg('p60',this)" style="display:none"></div>
+    
+    <div class="prod-name">Annual Day Stage Backdrop</div>
+    <div class="prod-detail">Large format high-resolution stage backdrop. Custom design with theme, school name, sponsor logos.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Large Format</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p61">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p61" onclick="trigUp('p61')"><img class="cph" id="ci_p61" style="display:none" src=""><div class="iph" id="ph_p61"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p61" onchange="handleImg('p61',this)" style="display:none"></div>
+    
+    <div class="prod-name">Subject Room Sign Boards</div>
+    <div class="prod-detail">Acrylic sign boards for Science Lab, Computer Lab, Library, Art Room. Premium finish.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Science &middot; Library &middot; Labs</div>
+    <div></div>
+  </div>
+</div></div>
+</section><section class="cat" id="c7">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 07</div>
+      <div class="cat-h">Events &amp;<br>Functions</div>
+      <div class="cat-desc">Complete event branding and execution support. We understand school event timelines and deliver everything before your deadline.</div>
+    </div>
+    <div class="cat-bg-n">07</div>
+  </div>
+  <div class="feat-grid"><div class="feat-card" data-cid="f5">
+  <div class="fimg-zone" id="iz_f5" onclick="trigUp('f5')"><img class="fph" id="ci_f5" style="display:none" src=""><div class="iph" id="ph_f5"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f5" onchange="handleImg('f5',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Annual Day — Complete Package</div>
+    <div class="feat-desc">Stage backdrop, entry arch, corridor banners, seat covers, photo booth frame, red carpet, directional standees, and welcome banner.</div>
+    <div class="feat-tag">Premium Package Available</div>
+  </div>
+</div><div class="feat-card" data-cid="f6">
+  <div class="fimg-zone" id="iz_f6" onclick="trigUp('f6')"><img class="fph" id="ci_f6" style="display:none" src=""><div class="iph" id="ph_f6"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f6" onchange="handleImg('f6',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Sports Day Package</div>
+    <div class="feat-desc">Starting line and finish line banners, four house flags, scoreboard display board, trophy table cover, track markings flex, event schedule board.</div>
+    <div class="feat-tag">All House Colours</div>
+  </div>
+</div><div class="feat-card" data-cid="f7">
+  <div class="fimg-zone" id="iz_f7" onclick="trigUp('f7')"><img class="fph" id="ci_f7" style="display:none" src=""><div class="iph" id="ph_f7"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f7" onchange="handleImg('f7',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Republic &amp; Independence Day</div>
+    <div class="feat-desc">Patriotic display boards, cultural program backdrop, stage decoration boards, chief guest felicitation kit, tricolour banners.</div>
+    <div class="feat-tag">National Events</div>
+  </div>
+</div><div class="feat-card" data-cid="f8">
+  <div class="fimg-zone" id="iz_f8" onclick="trigUp('f8')"><img class="fph" id="ci_f8" style="display:none" src=""><div class="iph" id="ph_f8"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f8" onchange="handleImg('f8',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Farewell &amp; Graduation Day</div>
+    <div class="feat-desc">Premium stage backdrop, prop frames, batch year display, farewell gift kits, memory book printing, batch jackets with names.</div>
+    <div class="feat-tag">Passing Out Batch</div>
+  </div>
+</div><div class="feat-card" data-cid="f9">
+  <div class="fimg-zone" id="iz_f9" onclick="trigUp('f9')"><img class="fph" id="ci_f9" style="display:none" src=""><div class="iph" id="ph_f9"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f9" onchange="handleImg('f9',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Parent Teacher Meeting</div>
+    <div class="feat-desc">Directional standees, classroom name boards, table cards for teachers, parent feedback form pads, guidance poster boards.</div>
+    <div class="feat-tag">Every Term</div>
+  </div>
+</div><div class="feat-card" data-cid="f10">
+  <div class="fimg-zone" id="iz_f10" onclick="trigUp('f10')"><img class="fph" id="ci_f10" style="display:none" src=""><div class="iph" id="ph_f10"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f10" onchange="handleImg('f10',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Science Fair &amp; Exhibitions</div>
+    <div class="feat-desc">Project display boards, stall branding panels, event banner, participant name cards, judge scoring sheets, category signage.</div>
+    <div class="feat-tag">All Competitions</div>
+  </div>
+</div></div>
+</section><section class="cat" id="c8">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 08</div>
+      <div class="cat-h">Awards &amp;<br>Recognition</div>
+      <div class="cat-desc">Every achievement deserves to be celebrated properly. Premium trophies, medals, and certificates that students will treasure for years.</div>
+    </div>
+    <div class="cat-bg-n">08</div>
+  </div>
+  <div class="prod-grid"><div class="prod-card" data-cid="p62">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p62" onclick="trigUp('p62')"><img class="cph" id="ci_p62" style="display:none" src=""><div class="iph" id="ph_p62"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p62" onchange="handleImg('p62',this)" style="display:none"></div>
+    
+    <div class="prod-name">Trophies</div>
+    <div class="prod-detail">Crystal, acrylic, metal, and resin trophies for sports, academics, and cultural events. Custom engravings.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Crystal &middot; Metal &middot; Acrylic</div>
+    <div class="prod-pop-badge">&#9733; Popular</div>
+  </div>
+</div><div class="prod-card" data-cid="p63">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p63" onclick="trigUp('p63')"><img class="cph" id="ci_p63" style="display:none" src=""><div class="iph" id="ph_p63"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p63" onchange="handleImg('p63',this)" style="display:none"></div>
+    
+    <div class="prod-name">Medals</div>
+    <div class="prod-detail">Gold, silver, and bronze medals with school logo and event name. Ribbon in school colours.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Gold &middot; Silver &middot; Bronze</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p64">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p64" onclick="trigUp('p64')"><img class="cph" id="ci_p64" style="display:none" src=""><div class="iph" id="ph_p64"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p64" onchange="handleImg('p64',this)" style="display:none"></div>
+    
+    <div class="prod-name">Shields &amp; Plaques</div>
+    <div class="prod-detail">Wooden shields with metal plaque. Custom engraved with event, year, and school name.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Custom Engraved</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p65">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p65" onclick="trigUp('p65')"><img class="cph" id="ci_p65" style="display:none" src=""><div class="iph" id="ph_p65"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p65" onchange="handleImg('p65',this)" style="display:none"></div>
+    
+    <div class="prod-name">Achievement Certificates</div>
+    <div class="prod-detail">A4 premium-quality certificate paper with gold border, school seal space, and principal signature block.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Premium Certificate Paper</div>
+    <div class="prod-pop-badge">&#9733; Popular</div>
+  </div>
+</div><div class="prod-card" data-cid="p66">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p66" onclick="trigUp('p66')"><img class="cph" id="ci_p66" style="display:none" src=""><div class="iph" id="ph_p66"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p66" onchange="handleImg('p66',this)" style="display:none"></div>
+    
+    <div class="prod-name">Participation Certificates</div>
+    <div class="prod-detail">Bulk-printed participation certificates for competitions, events, and co-curricular activities.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Bulk Printing</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p67">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p67" onclick="trigUp('p67')"><img class="cph" id="ci_p67" style="display:none" src=""><div class="iph" id="ph_p67"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p67" onchange="handleImg('p67',this)" style="display:none"></div>
+    
+    <div class="prod-name">Certificate Frames</div>
+    <div class="prod-detail">Matching frames for displaying certificates on walls. Gold, silver, and black finishes.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Wall Display</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p68">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p68" onclick="trigUp('p68')"><img class="cph" id="ci_p68" style="display:none" src=""><div class="iph" id="ph_p68"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p68" onchange="handleImg('p68',this)" style="display:none"></div>
+    
+    <div class="prod-name">Momento &amp; Mementos</div>
+    <div class="prod-detail">Custom glass, crystal, and wooden mementos for felicitating chief guests and retiring staff.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">For Chief Guests</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p69">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p69" onclick="trigUp('p69')"><img class="cph" id="ci_p69" style="display:none" src=""><div class="iph" id="ph_p69"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p69" onchange="handleImg('p69',this)" style="display:none"></div>
+    
+    <div class="prod-name">Felicitation Plaques</div>
+    <div class="prod-detail">Heavy-duty metal plaques mounted on wood for VIP guests, retiring teachers, and special events.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">VIP &amp; Retiring Staff</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p70">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p70" onclick="trigUp('p70')"><img class="cph" id="ci_p70" style="display:none" src=""><div class="iph" id="ph_p70"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p70" onchange="handleImg('p70',this)" style="display:none"></div>
+    
+    <div class="prod-name">Medal Ribbons</div>
+    <div class="prod-detail">Satin ribbons in school colours for hanging medals. Custom width and length available.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">School Colours</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p71">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p71" onclick="trigUp('p71')"><img class="cph" id="ci_p71" style="display:none" src=""><div class="iph" id="ph_p71"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p71" onchange="handleImg('p71',this)" style="display:none"></div>
+    
+    <div class="prod-name">Annual Prize Distribution Kit</div>
+    <div class="prod-detail">Complete kit &mdash; trophies, certificates, envelopes, and stage display board &mdash; ready for prize day.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Complete Solution</div>
+    <div></div>
+  </div>
+</div></div>
+</section><section class="cat" id="c9">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 09</div>
+      <div class="cat-h">Digital<br>Services</div>
+      <div class="cat-desc">Modern schools need a professional digital presence. We set up everything from a website to WhatsApp communication systems.</div>
+    </div>
+    <div class="cat-bg-n">09</div>
+  </div>
+  <div class="feat-grid"><div class="feat-card" data-cid="f11">
+  <div class="fimg-zone" id="iz_f11" onclick="trigUp('f11')"><img class="fph" id="ci_f11" style="display:none" src=""><div class="iph" id="ph_f11"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f11" onchange="handleImg('f11',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">School Website</div>
+    <div class="feat-desc">5-page professional website with Home, About, Academics, Admissions, and Contact pages. Mobile responsive, fast-loading, easy to update.</div>
+    <div class="feat-tag">High Demand &middot; Most Schools Outdated</div>
+  </div>
+</div><div class="feat-card" data-cid="f12">
+  <div class="fimg-zone" id="iz_f12" onclick="trigUp('f12')"><img class="fph" id="ci_f12" style="display:none" src=""><div class="iph" id="ph_f12"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f12" onchange="handleImg('f12',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Admission Landing Page</div>
+    <div class="feat-desc">Single-page inquiry form that collects parent details online. You receive leads directly on WhatsApp or email. Perfect for admission season.</div>
+    <div class="feat-tag">Admission Season Must-have</div>
+  </div>
+</div><div class="feat-card" data-cid="f13">
+  <div class="fimg-zone" id="iz_f13" onclick="trigUp('f13')"><img class="fph" id="ci_f13" style="display:none" src=""><div class="iph" id="ph_f13"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f13" onchange="handleImg('f13',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">WhatsApp Broadcast Setup</div>
+    <div class="feat-desc">WhatsApp Business setup, contact list management, pre-written message templates for circulars, fee reminders, and event notices.</div>
+    <div class="feat-tag">Parent Communication</div>
+  </div>
+</div><div class="feat-card" data-cid="f14">
+  <div class="fimg-zone" id="iz_f14" onclick="trigUp('f14')"><img class="fph" id="ci_f14" style="display:none" src=""><div class="iph" id="ph_f14"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f14" onchange="handleImg('f14',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Social Media Setup</div>
+    <div class="feat-desc">Facebook page and Instagram account setup with branded cover photo, profile picture, and first 10 posts ready for publishing.</div>
+    <div class="feat-tag">Facebook &middot; Instagram</div>
+  </div>
+</div><div class="feat-card" data-cid="f15">
+  <div class="fimg-zone" id="iz_f15" onclick="trigUp('f15')"><img class="fph" id="ci_f15" style="display:none" src=""><div class="iph" id="ph_f15"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f15" onchange="handleImg('f15',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Digital ID Cards</div>
+    <div class="feat-desc">PDF digital ID cards for staff and students. QR code enabled for verification. Share via email or WhatsApp instantly.</div>
+    <div class="feat-tag">Email &amp; WhatsApp Ready</div>
+  </div>
+</div><div class="feat-card" data-cid="f16">
+  <div class="fimg-zone" id="iz_f16" onclick="trigUp('f16')"><img class="fph" id="ci_f16" style="display:none" src=""><div class="iph" id="ph_f16"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload</span></div><input type="file" accept="image/*" id="fi_f16" onchange="handleImg('f16',this)" style="display:none"></div>
+  <div class="feat-content">
+    <div class="feat-name">Presentation Templates</div>
+    <div class="feat-desc">Branded Google Slides and PowerPoint templates for staff meetings, PTM presentations, and official school presentations.</div>
+    <div class="feat-tag">Official Templates</div>
+  </div>
+</div></div>
+</section><section class="cat" id="c10">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 10</div>
+      <div class="cat-h">Gifting &amp;<br>Merchandise</div>
+      <div class="cat-desc">Branded merchandise and thoughtful gift kits that create lasting memories and strengthen school community bonds.</div>
+    </div>
+    <div class="cat-bg-n">10</div>
+  </div>
+  <div class="prod-grid"><div class="prod-card" data-cid="p72">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p72" onclick="trigUp('p72')"><img class="cph" id="ci_p72" style="display:none" src=""><div class="iph" id="ph_p72"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p72" onchange="handleImg('p72',this)" style="display:none"></div>
+    
+    <div class="prod-name">New Session Welcome Kit</div>
+    <div class="prod-detail">Curated kit with school diary, branded pen, pencil, and student ID card in a branded carry bag. Best first impression.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Diary &middot; Pen &middot; ID Card</div>
+    <div class="prod-pop-badge">&#9733; Popular</div>
+  </div>
+</div><div class="prod-card" data-cid="p73">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p73" onclick="trigUp('p73')"><img class="cph" id="ci_p73" style="display:none" src=""><div class="iph" id="ph_p73"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p73" onchange="handleImg('p73',this)" style="display:none"></div>
+    
+    <div class="prod-name">Teacher's Day Gift Hamper</div>
+    <div class="prod-detail">Premium hamper with branded mug, notebook, pen, and a personalised certificate. Ready for distribution.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Appreciation Gift</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p74">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p74" onclick="trigUp('p74')"><img class="cph" id="ci_p74" style="display:none" src=""><div class="iph" id="ph_p74"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p74" onchange="handleImg('p74',this)" style="display:none"></div>
+    
+    <div class="prod-name">Branded Coffee Mugs</div>
+    <div class="prod-detail">Ceramic mugs with school logo. Perfect for staff gifting, alumni events, and student rewards.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Ceramic &middot; Logo Print</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p75">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p75" onclick="trigUp('p75')"><img class="cph" id="ci_p75" style="display:none" src=""><div class="iph" id="ph_p75"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p75" onchange="handleImg('p75',this)" style="display:none"></div>
+    
+    <div class="prod-name">Souvenir Notebooks</div>
+    <div class="prod-detail">Premium branded notebooks as farewell souvenirs. Custom cover with batch name and graduation year.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Farewell Souvenir</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p76">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p76" onclick="trigUp('p76')"><img class="cph" id="ci_p76" style="display:none" src=""><div class="iph" id="ph_p76"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p76" onchange="handleImg('p76',this)" style="display:none"></div>
+    
+    <div class="prod-name">Keychains &amp; Badges</div>
+    <div class="prod-detail">Metal or acrylic keychains and enamel pin badges with school crest. Students love them.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Metal &middot; Acrylic</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p77">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p77" onclick="trigUp('p77')"><img class="cph" id="ci_p77" style="display:none" src=""><div class="iph" id="ph_p77"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p77" onchange="handleImg('p77',this)" style="display:none"></div>
+    
+    <div class="prod-name">Fridge Magnets</div>
+    <div class="prod-detail">School-branded fridge magnets. Parents display them at home &mdash; daily reminder of your school.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Home Display</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p78">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p78" onclick="trigUp('p78')"><img class="cph" id="ci_p78" style="display:none" src=""><div class="iph" id="ph_p78"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p78" onchange="handleImg('p78',this)" style="display:none"></div>
+    
+    <div class="prod-name">Student Achievement Gift Box</div>
+    <div class="prod-detail">Curated gift box for merit students &mdash; pen, notebook, bookmark, and personalised certificate.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Merit Award</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p79">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p79" onclick="trigUp('p79')"><img class="cph" id="ci_p79" style="display:none" src=""><div class="iph" id="ph_p79"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p79" onchange="handleImg('p79',this)" style="display:none"></div>
+    
+    <div class="prod-name">School Pennants &amp; Flags</div>
+    <div class="prod-detail">Mini flags and pennants in school or house colours for decorating classrooms and events.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Events &amp; Display</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p80">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p80" onclick="trigUp('p80')"><img class="cph" id="ci_p80" style="display:none" src=""><div class="iph" id="ph_p80"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p80" onchange="handleImg('p80',this)" style="display:none"></div>
+    
+    <div class="prod-name">Wristbands &amp; Lanyards</div>
+    <div class="prod-detail">ID lanyards for staff and students. Fabric wristbands for event management and sports day.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Staff &amp; Events</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p81">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p81" onclick="trigUp('p81')"><img class="cph" id="ci_p81" style="display:none" src=""><div class="iph" id="ph_p81"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p81" onchange="handleImg('p81',this)" style="display:none"></div>
+    
+    <div class="prod-name">Farewell Gift Kits</div>
+    <div class="prod-detail">Complete farewell package &mdash; customised with batch name, year, and personalised message.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Passing Out Batch</div>
+    <div></div>
+  </div>
+</div></div>
+</section><section class="cat" id="c11">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 11</div>
+      <div class="cat-h">Safety &amp;<br>Compliance</div>
+      <div class="cat-desc">Mandatory safety signage and awareness materials to keep your school safe, compliant, and inspection-ready at all times.</div>
+    </div>
+    <div class="cat-bg-n">11</div>
+  </div>
+  <div class="prod-grid"><div class="prod-card" data-cid="p82">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p82" onclick="trigUp('p82')"><img class="cph" id="ci_p82" style="display:none" src=""><div class="iph" id="ph_p82"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p82" onchange="handleImg('p82',this)" style="display:none"></div>
+    
+    <div class="prod-name">School Safety Signage Kit</div>
+    <div class="prod-detail">Complete set of safety signs &mdash; fire exit, assembly point, no-smoking, emergency contact, first aid location.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Complete Kit</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p83">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p83" onclick="trigUp('p83')"><img class="cph" id="ci_p83" style="display:none" src=""><div class="iph" id="ph_p83"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p83" onchange="handleImg('p83',this)" style="display:none"></div>
+    
+    <div class="prod-name">Fire Exit &amp; Evacuation Signs</div>
+    <div class="prod-detail">Glow-in-dark fire exit signs and printed evacuation route maps for all floors. Mandatory requirement.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">CBSE Mandatory</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p84">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p84" onclick="trigUp('p84')"><img class="cph" id="ci_p84" style="display:none" src=""><div class="iph" id="ph_p84"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p84" onchange="handleImg('p84',this)" style="display:none"></div>
+    
+    <div class="prod-name">Anti-Ragging Posters</div>
+    <div class="prod-detail">Mandatory anti-ragging posters as per CBSE/UGC guidelines. Printed in Hindi and English.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">CBSE Mandated</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p85">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p85" onclick="trigUp('p85')"><img class="cph" id="ci_p85" style="display:none" src=""><div class="iph" id="ph_p85"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p85" onchange="handleImg('p85',this)" style="display:none"></div>
+    
+    <div class="prod-name">POCSO Awareness Boards</div>
+    <div class="prod-detail">Child safety awareness boards as required by POCSO Act. Placed in classrooms and corridors.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Child Safety Act</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p86">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p86" onclick="trigUp('p86')"><img class="cph" id="ci_p86" style="display:none" src=""><div class="iph" id="ph_p86"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p86" onchange="handleImg('p86',this)" style="display:none"></div>
+    
+    <div class="prod-name">Road Safety Posters</div>
+    <div class="prod-detail">Traffic rules and road safety posters for school gate area and corridors. Awareness for students.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Traffic Safety</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p87">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p87" onclick="trigUp('p87')"><img class="cph" id="ci_p87" style="display:none" src=""><div class="iph" id="ph_p87"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p87" onchange="handleImg('p87',this)" style="display:none"></div>
+    
+    <div class="prod-name">Hygiene &amp; Hand Wash Boards</div>
+    <div class="prod-detail">Hand washing steps, hygiene tips, and health awareness boards for washrooms and canteen.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Health Awareness</div>
+    <div></div>
+  </div>
+</div></div>
+</section><section class="cat" id="c12">
+  <div class="cat-hdr">
+    <div class="cat-hdr-left">
+      <div class="cat-eye2">Category 12</div>
+      <div class="cat-h">Classroom<br>Supplies</div>
+      <div class="cat-desc">Everything needed for a well-equipped, well-identified classroom. Bulk supply available with school branding on all items.</div>
+    </div>
+    <div class="cat-bg-n">12</div>
+  </div>
+  <div class="prod-grid"><div class="prod-card" data-cid="p88">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p88" onclick="trigUp('p88')"><img class="cph" id="ci_p88" style="display:none" src=""><div class="iph" id="ph_p88"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p88" onchange="handleImg('p88',this)" style="display:none"></div>
+    
+    <div class="prod-name">Teacher's Desk Nameplate</div>
+    <div class="prod-detail">Elegant acrylic or metal desk nameplate with teacher's name and subject. For all classrooms.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">All Teachers</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p89">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p89" onclick="trigUp('p89')"><img class="cph" id="ci_p89" style="display:none" src=""><div class="iph" id="ph_p89"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p89" onchange="handleImg('p89',this)" style="display:none"></div>
+    
+    <div class="prod-name">Classroom Number Plates</div>
+    <div class="prod-detail">Acrylic or flex number plates for each classroom. Class number, section, and teacher's name.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Acrylic &middot; Flex</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p90">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p90" onclick="trigUp('p90')"><img class="cph" id="ci_p90" style="display:none" src=""><div class="iph" id="ph_p90"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p90" onchange="handleImg('p90',this)" style="display:none"></div>
+    
+    <div class="prod-name">Subject &amp; Educational Posters</div>
+    <div class="prod-detail">Alphabets, numbers, periodic table, world map, multiplication tables &mdash; printed in high resolution.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">All Subjects</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p91">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p91" onclick="trigUp('p91')"><img class="cph" id="ci_p91" style="display:none" src=""><div class="iph" id="ph_p91"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p91" onchange="handleImg('p91',this)" style="display:none"></div>
+    
+    <div class="prod-name">Cork &amp; Pin Boards</div>
+    <div class="prod-detail">Standard notice boards with branded borders. Used for student work display and class notices.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Classroom Display</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p92">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p92" onclick="trigUp('p92')"><img class="cph" id="ci_p92" style="display:none" src=""><div class="iph" id="ph_p92"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p92" onchange="handleImg('p92',this)" style="display:none"></div>
+    
+    <div class="prod-name">Chart Paper Packs</div>
+    <div class="prod-detail">Assorted colour chart paper in bulk. School name on packaging. Monthly supply available.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">All Colours &middot; Bulk</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p93">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p93" onclick="trigUp('p93')"><img class="cph" id="ci_p93" style="display:none" src=""><div class="iph" id="ph_p93"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p93" onchange="handleImg('p93',this)" style="display:none"></div>
+    
+    <div class="prod-name">Project Display Boards</div>
+    <div class="prod-detail">Tri-fold and straight display boards for science fairs, project exhibitions, and classroom displays.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Science Fair</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p94">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p94" onclick="trigUp('p94')"><img class="cph" id="ci_p94" style="display:none" src=""><div class="iph" id="ph_p94"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p94" onchange="handleImg('p94',this)" style="display:none"></div>
+    
+    <div class="prod-name">Whiteboard Markers &amp; Dusters</div>
+    <div class="prod-detail">Bulk supply of whiteboard markers in multiple colours and matching dusters for all classrooms.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Monthly Supply</div>
+    <div></div>
+  </div>
+</div><div class="prod-card" data-cid="p95">
+  <div class="prod-card-top"><div class="img-zone" id="iz_p95" onclick="trigUp('p95')"><img class="cph" id="ci_p95" style="display:none" src=""><div class="iph" id="ph_p95"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="7" cy="8" r="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M2 14L6 10L9 12L13 8L18 13" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg><span>Upload Photo</span></div><input type="file" accept="image/*" id="fi_p95" onchange="handleImg('p95',this)" style="display:none"></div>
+    
+    <div class="prod-name">Chalk &amp; Accessories</div>
+    <div class="prod-detail">White and coloured chalk in bulk packs, chalk holders, dusters. Monthly supply contract available.</div>
+  </div>
+  <div class="prod-card-foot">
+    <div class="prod-tag">Monthly Contract</div>
+    <div></div>
+  </div>
+</div></div>
+</section>
+<section class="why">
+  <div class="why-inner">
+    <div>
+      <div class="s-label" style="color:rgba(184,134,11,.7)">Why Partner With Us</div>
+      <div class="why-h">One School.<br><em>One Vendor.</em><br>Everything.</div>
+      <div class="why-sub">Stop managing 10 different vendors and chasing 10 different deadlines. We handle everything &mdash; from the first ID card to the last trophy at year end.</div>
+      <div class="why-pts">
+        <div class="wp"><div class="wp-n">01</div><div><div class="wp-t">Single Point of Contact</div><div class="wp-d">One call, one person, everything sorted. No coordination headaches, no confusion on deliveries.</div></div></div>
+        <div class="wp"><div class="wp-n">02</div><div><div class="wp-t">Consistent Branding Across Everything</div><div class="wp-d">Same logo, same colours, same fonts on every product. Your school looks unified and professional.</div></div></div>
+        <div class="wp"><div class="wp-n">03</div><div><div class="wp-t">On-Time Delivery Guaranteed</div><div class="wp-d">We understand school timelines &mdash; session start, annual day, sports day. We deliver before your deadline.</div></div></div>
+        <div class="wp"><div class="wp-n">04</div><div><div class="wp-t">10+ Years of Experience</div><div class="wp-d">Deep expertise in printing, branding, and events. We know exactly what schools need &mdash; and what they don&rsquo;t.</div></div></div>
+      </div>
+    </div>
+    <div class="why-stats">
+      <div class="ws"><div class="ws-n">12</div><div class="ws-l">Service Categories</div></div>
+      <div class="ws"><div class="ws-n">100+</div><div class="ws-l">Products Available</div></div>
+      <div class="ws"><div class="ws-n">10+</div><div class="ws-l">Years Experience</div></div>
+      <div class="ws"><div class="ws-n">1</div><div class="ws-l">Vendor. All Done.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-eye">Get Started Today</div>
+  <div class="cta-h">Let&rsquo;s build something<br><em>great for your school.</em></div>
+  <div class="cta-sub">Get a custom quote for your school. Tell us what you need &mdash; we&rsquo;ll create the best solution for you.</div>
+  <div class="cta-btns">
+    <a href="tel:+910000000000" class="btn-p">Call Now</a>
+    <a href="https://wa.me/910000000000" class="btn-s">WhatsApp Us</a>
+  </div>
+  <div class="cta-contacts">
+    <div><div class="cc-l">Phone &amp; WhatsApp</div><div class="cc-v">[Your Number]</div></div>
+    <div><div class="cc-l">Email</div><div class="cc-v">[Your Email]</div></div>
+    <div><div class="cc-l">Location</div><div class="cc-v">[Your City]</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-b">[Your <em>Brand</em>] &mdash; School Solutions</div>
+  <div class="ft-c">Catalogue 2025&ndash;26 &middot; All Rights Reserved</div>
+  <div class="ft-contact">[Your Phone] &middot; [Your Email]</div>
+</footer>
+
+
+<div id="abar">
+  <div class="ab-l">
+    <div class="ab-title">&#9998; Admin Mode &mdash; Upload Product Photos</div>
+    <div><span class="ab-count" id="pcnt">0</span><span class="ab-cnt-l">photos uploaded</span></div>
+  </div>
+  <div class="ab-note">Photos saved in browser. Click Export when done &mdash; all photos will be embedded in the final file.</div>
+  <div class="ab-btns">
+    <button class="ab-btn ab-clr" onclick="clearAll()">Clear All</button>
+    <button class="ab-btn ab-exp" onclick="exportCat()">&#8595;&nbsp; Export Final Catalogue</button>
+  </div>
+</div>
+
+<script>
+var PH = {};
+
+function trigUp(c){
+  var el = document.getElementById('fi_'+c);
+  if(el) el.click();
+}
+
+function handleImg(c, inp){
+  var file = inp.files[0];
+  if(!file) return;
+  var r = new FileReader();
+  r.onload = function(e){
+    var src = e.target.result;
+    PH[c] = src;
+    var img = document.getElementById('ci_'+c);
+    var ph  = document.getElementById('ph_'+c);
+    if(img){ img.src = src; img.style.display = 'block'; }
+    if(ph)  ph.style.display = 'none';
+    savePH(); updCnt();
+  };
+  r.readAsDataURL(file);
+}
+
+function updCnt(){
+  var el = document.getElementById('pcnt');
+  if(el) el.textContent = Object.keys(PH).length;
+}
+
+function savePH(){
+  try{ localStorage.setItem('sch_ph', JSON.stringify(PH)); }catch(e){}
+}
+
+function loadPH(){
+  try{
+    var d = localStorage.getItem('sch_ph');
+    if(!d) return;
+    PH = JSON.parse(d);
+    Object.keys(PH).forEach(function(c){
+      var img = document.getElementById('ci_'+c);
+      var ph  = document.getElementById('ph_'+c);
+      if(img){ img.src = PH[c]; img.style.display = 'block'; }
+      if(ph)  ph.style.display = 'none';
+    });
+    updCnt();
+  }catch(e){}
+}
+
+function clearAll(){
+  if(!confirm('Clear all uploaded photos?')) return;
+  PH = {};
+  document.querySelectorAll('.cph,.fph').forEach(function(img){
+    img.style.display='none'; img.src='';
+  });
+  document.querySelectorAll('.iph').forEach(function(ph){ ph.style.display='flex'; });
+  try{ localStorage.removeItem('sch_ph'); }catch(e){}
+  updCnt();
+}
+
+function exportCat(){
+  // Clone current doc
+  var clone = document.documentElement.cloneNode(true);
+  
+  // Embed all photos with actual src
+  Object.keys(PH).forEach(function(c){
+    var img = clone.querySelector('#ci_'+c);
+    if(img){ img.src = PH[c]; img.style.display = 'block'; }
+    var ph = clone.querySelector('#ph_'+c);
+    if(ph) ph.style.display = 'none';
+  });
+  
+  // Remove admin bar
+  var bar = clone.querySelector('#abar');
+  if(bar) bar.remove();
+  
+  // Remove file inputs
+  clone.querySelectorAll('input[type=file]').forEach(function(inp){ inp.remove(); });
+  
+  // Remove upload click handlers
+  clone.querySelectorAll('.img-zone,.fimg-zone').forEach(function(z){
+    z.removeAttribute('onclick');
+    z.style.cursor = 'default';
+  });
+  
+  // Remove script tags (the js ones we added)
+  var scripts = clone.querySelectorAll('script');
+  scripts.forEach(function(s){ s.remove(); });
+  
+  // Remove admin CSS padding
+  var styles = clone.querySelectorAll('style');
+  styles.forEach(function(s){
+    s.textContent = s.textContent.replace('body{padding-bottom:80px;}','');
+    s.textContent = s.textContent.replace('#abar{','#abar{display:none!important;');
+  });
+  
+  var finalHtml = '<!DOCTYPE html>' + clone.outerHTML;
+  
+  var blob = new Blob([finalHtml], {type:'text/html;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'School_Catalogue_Final.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+  
+  alert('Done! Open School_Catalogue_Final.html — photos are embedded. Share it or upload to Netlify.');
+}
+
+window.addEventListener('load', loadPH);
+</script>
+
+</body>
+</html>

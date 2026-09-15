@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1117">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="StudyFlow">
+  <title>StudyFlow Habit Tracker</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0f1117;--surface:#181c27;--surface2:#1e2334;--surface3:#252b3b;
+      --border:#2a3048;--text:#e8eaf6;--muted:#7b82a0;--faint:#3a4160;
+      --green:#4ade80;--green-bg:#0d2a1a;--purple:#818cf8;--warning:#fbbf24;--danger:#f87171;
+      --font-display:'Sora',sans-serif;--font-body:'Inter',sans-serif;
+      /* Type scale — one consistent system */
+      --text-xs:0.72rem;     /* 11.5px — tiny labels */
+      --text-sm:0.8125rem;   /* 13px  — secondary/meta */
+      --text-base:0.9375rem; /* 15px  — body */
+      --text-lg:1.0625rem;   /* 17px  — card titles */
+      --text-xl:1.25rem;     /* 20px  — section heads */
+      --text-2xl:1.75rem;    /* 28px  — stat numbers */
+      --text-3xl:1.875rem;   /* 30px  — logo */
+      /* Line heights */
+      --lh-tight:1.2;
+      --lh-normal:1.5;
+      /* Letter spacing */
+      --ls-caps:0.06em;
+    }
+    html,body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;-webkit-font-smoothing:antialiased;min-height:100%}
+    body{padding:0 0 env(safe-area-inset-bottom)}
+    .app{max-width:780px;margin:0 auto;padding:1rem .9rem 3rem}
+
+    /* ── Top bar ── */
+    .top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;gap:.75rem;flex-wrap:wrap}
+    .logo{font-family:var(--font-display);font-size:var(--text-3xl);font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:var(--lh-tight)}
+    .logo span{color:var(--purple)}
+    .save-indicator,.small-note{font-size:var(--text-sm);font-weight:500;color:var(--muted);display:flex;align-items:center;gap:6px;transition:opacity .3s}
+    .save-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
+
+    /* ── Buttons ── */
+    .install-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+    .ghost-btn,.today-btn,.nav-btn,.add-btn,.mini-btn{font-family:var(--font-body);border-radius:12px;cursor:pointer;transition:all .15s;font-weight:600;letter-spacing:-.01em}
+    .ghost-btn,.nav-btn,.mini-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted)}
+    .ghost-btn,.mini-btn{padding:.7rem .95rem;font-size:var(--text-sm)}
+    .nav-btn{padding:.65rem .95rem;font-size:var(--text-sm)}
+    .today-btn{background:var(--purple);border:none;color:#fff;padding:.65rem 1rem;font-size:var(--text-sm)}
+    .add-btn{background:var(--purple);border:none;color:#fff;padding:.85rem 1.1rem;font-size:var(--text-base);font-weight:700;white-space:nowrap;min-height:48px}
+    .ghost-btn:hover,.nav-btn:hover,.mini-btn:hover{border-color:var(--purple);color:var(--purple)}
+    .today-btn:hover,.add-btn:hover{background:#6366f1}
+
+    /* ── Info card ── */
+    .info-card{background:linear-gradient(180deg,rgba(129,140,248,.1),rgba(129,140,248,.04));border:1px solid rgba(129,140,248,.22);border-radius:16px;padding:.95rem 1rem;margin-bottom:1rem}
+    .info-title{font-size:var(--text-base);font-weight:700;letter-spacing:-.01em;margin-bottom:.3rem;line-height:var(--lh-tight)}
+    .info-text{font-size:var(--text-sm);color:var(--muted);line-height:var(--lh-normal)}
+
+    /* ── Week nav ── */
+    .week-row{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:.6rem;margin-bottom:1rem}
+    .week-label{font-size:var(--text-base);font-weight:700;letter-spacing:-.01em;color:var(--text);text-align:center}
+
+    /* ── Stats ── */
+    .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1.2rem}
+    .stat{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1rem}
+    .stat-label{font-size:var(--text-xs);font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:var(--ls-caps);margin-bottom:.4rem;line-height:1}
+    .stat-val{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:800;color:var(--text);line-height:var(--lh-tight);letter-spacing:-.03em}
+    .stat-val.green{color:var(--green)}
+
+    /* ── Progress ── */
+    .progress-wrap{margin-bottom:1.2rem}
+    .progress-bar-bg{height:10px;background:var(--surface3);border-radius:999px;overflow:hidden}
+    .progress-bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--purple),var(--green));transition:width .4s ease}
+    .progress-label{font-size:var(--text-sm);font-weight:500;color:var(--muted);margin-top:.45rem;text-align:right}
+
+    /* ── Add section ── */
+    .add-section{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1rem;margin-bottom:1.25rem}
+    .add-row{display:grid;grid-template-columns:1fr auto;gap:.7rem}
+    .add-row input,.target-num,.topt input[type=number],.topt input[type=date],.time-input{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:.85rem .95rem;border-radius:12px;font-family:var(--font-body);font-size:var(--text-base);font-weight:400;min-height:48px;letter-spacing:-.01em}
+    .add-row input::placeholder{color:var(--muted)}
+    .add-row input:focus,.target-num:focus,.topt input:focus,.time-input:focus{outline:none;border-color:var(--purple)}
+
+    .target-row{display:flex;align-items:center;gap:.55rem;margin-top:.8rem;flex-wrap:wrap}
+    .target-lbl,.topt-hint{font-size:var(--text-sm);font-weight:500;color:var(--muted);white-space:nowrap}
+    .target-num{width:78px;text-align:center;padding-left:.4rem;padding-right:.4rem}
+    .target-divider{width:1px;height:22px;background:var(--border);margin:0 .15rem}
+    .target-toggle{display:flex;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:4px;gap:4px;flex-wrap:wrap}
+    .ttog-btn{padding:.5rem .75rem;border:none;border-radius:8px;font-family:var(--font-body);font-size:var(--text-sm);font-weight:600;letter-spacing:-.01em;cursor:pointer;background:none;color:var(--muted)}
+    .ttog-btn.active{background:var(--purple);color:#fff}
+    .topt{display:none;align-items:center;gap:.45rem;flex-wrap:wrap}
+    .topt.show{display:flex}
+    .topt input[type=number]{width:64px;text-align:center;padding-left:.4rem;padding-right:.4rem}
+    .topt input[type=date]{color-scheme:dark}
+
+    .notify-row{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--border)}
+    .notify-pill{font-size:var(--text-xs);font-weight:500;padding:.4rem .65rem;border-radius:999px;background:var(--surface2);border:1px solid var(--border);color:var(--muted)}
+
+    /* ── Habit cards ── */
+    .habits-list{display:flex;flex-direction:column;gap:.7rem}
+    .habit-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .2s}
+    .habit-card:hover{border-color:var(--faint)}
+    .card-top{display:flex;align-items:flex-start;gap:.7rem;padding:.9rem 1rem .7rem;border-bottom:1px solid var(--border)}
+    .habit-title-wrap{flex:1;min-width:0}
+    .habit-title{font-size:var(--text-lg);font-weight:700;letter-spacing:-.02em;color:var(--text);line-height:var(--lh-tight);word-break:break-word}
+    .habit-sub{font-size:var(--text-sm);font-weight:500;color:var(--muted);margin-top:.3rem;display:flex;gap:.45rem;flex-wrap:wrap;align-items:center}
+    .habit-meta{font-size:var(--text-sm);color:var(--muted);white-space:nowrap}
+    .badge{font-size:var(--text-xs);font-weight:600;padding:.2rem .55rem;border-radius:999px;background:var(--surface2);border:1px solid var(--border);letter-spacing:.01em}
+    .delete-btn{background:none;border:none;color:var(--faint);cursor:pointer;font-size:18px;padding:2px 5px;border-radius:6px;transition:color .15s;line-height:1}
+    .delete-btn:hover{color:var(--danger)}
+
+    /* ── Day cells ── */
+    .days-row{display:grid;padding:.7rem .7rem .8rem;gap:6px}
+    .day-cell{display:flex;flex-direction:column;align-items:center;gap:5px}
+    .day-name{font-size:var(--text-xs);font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:var(--ls-caps)}
+    .day-num{font-size:var(--text-xs);font-weight:600;color:var(--muted)}
+    .day-num.today-num{color:var(--purple)}
+    .check-btn{width:34px;height:34px;border-radius:10px;border:1.5px solid var(--border);background:none;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
+    .check-btn.done{background:var(--green-bg);border-color:var(--green)}
+    .check-btn.done::after{content:'✓';position:absolute;inset:0;display:grid;place-items:center;color:var(--green);font-size:15px;font-weight:700}
+    .check-btn.future{opacity:.3;cursor:default;pointer-events:none}
+    .check-btn:not(.done):not(.future):hover{border-color:var(--purple);background:rgba(129,140,248,.08)}
+
+    /* ── Streak ── */
+    .streak-wrap{padding:.1rem 1rem .8rem;display:flex;align-items:center;gap:.45rem}
+    .streak-bar{display:flex;gap:3px;flex:1}
+    .streak-pip{width:100%;height:5px;border-radius:999px;background:var(--surface3)}
+    .streak-pip.lit{background:var(--purple)}
+    .streak-pip.lit.green{background:var(--green)}
+    .streak-text{font-size:var(--text-xs);font-weight:600;color:var(--muted);white-space:nowrap;letter-spacing:.01em}
+
+    /* ── Section head ── */
+    .section-head{font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:var(--ls-caps);color:var(--muted);margin-bottom:.65rem;padding-left:2px}
+
+    /* ── Toast ── */
+    .toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(20px);background:#151927;color:var(--text);border:1px solid var(--border);padding:.85rem 1.1rem;border-radius:14px;font-size:var(--text-sm);font-weight:500;opacity:0;pointer-events:none;transition:.22s ease;z-index:9999;box-shadow:0 12px 30px rgba(0,0,0,.35);max-width:min(92vw,520px)}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .hidden{display:none !important}
+
+    @media (max-width:640px){
+      .app{padding:.9rem .85rem 2.8rem}
+      .week-row{grid-template-columns:1fr 1fr;grid-template-areas:'label label' 'prev next' 'today today'}
+      .week-label{grid-area:label}
+      .week-row .nav-btn:first-child{grid-area:prev}
+      .week-row .nav-btn:nth-child(3){grid-area:next}
+      .week-row .today-btn{grid-area:today}
+      .stats-grid{grid-template-columns:1fr 1fr 1fr}
+      .stat{padding:.9rem .85rem}
+      .stat-val{font-size:1.5rem}
+      .add-row{grid-template-columns:1fr}
+      .add-btn{width:100%}
+      .target-row{align-items:stretch}
+      .target-divider{display:none}
+      .days-row{padding:.65rem .45rem .75rem;gap:4px}
+      .check-btn{width:32px;height:32px;border-radius:9px}
+      .habit-meta{white-space:normal;text-align:right}
+    }
+    @media (max-width:420px){
+      .logo{font-size:1.6rem}
+      .stats-grid{gap:.55rem}
+      .stat-val{font-size:1.35rem}
+      .check-btn{width:30px;height:30px}
+      .target-toggle{width:100%}
+      .ttog-btn{flex:1}
+    }
+    @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.16)}100%{transform:scale(1)}}
+    .pop{animation:pop .2s ease}
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="top-bar">
+    <div class="logo">Study<span>Flow</span></div>
+    <div class="save-indicator" id="save-ind"><div class="save-dot"></div><span>All saved</span></div>
+  </div>
+
+  <div class="info-card">
+    <div class="info-title">Install + reminders ready</div>
+    <div class="info-text">Use this on a browser or hosted link for best results. Home screen install and notifications work properly when opened through a normal web link, not directly from a phone file manager.</div>
+  </div>
+
+  <div class="install-row">
+    <button class="ghost-btn" id="install-btn">Add to home screen</button>
+    <button class="ghost-btn" id="notify-btn">Enable notifications</button>
+    <span class="small-note" id="notify-status">Notifications: off</span>
+  </div>
+
+  <div class="week-row">
+    <button class="nav-btn" onclick="shiftWeek(-1)">← Prev</button>
+    <div class="week-label" id="week-label"></div>
+    <button class="nav-btn" onclick="shiftWeek(1)">Next →</button>
+    <button class="today-btn" onclick="goToday()">Today</button>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat"><div class="stat-label">Today</div><div class="stat-val green" id="s-today">0%</div></div>
+    <div class="stat"><div class="stat-label">This week</div><div class="stat-val" id="s-week">0%</div></div>
+    <div class="stat"><div class="stat-label">Best streak</div><div class="stat-val" id="s-streak">0d</div></div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-bar" style="width:0%"></div></div>
+    <div class="progress-label" id="prog-label">Week progress: 0%</div>
+  </div>
+
+  <div class="add-section">
+    <div class="add-row">
+      <input type="text" id="h-name" placeholder="Habit or subject name..." maxlength="40">
+      <button class="add-btn" onclick="addHabit()">+ Add</button>
+    </div>
+    <div class="target-row">
+      <span class="target-lbl">Daily target</span>
+      <input type="number" class="target-num" id="h-target" min="5" max="480" value="45" title="Minutes per day">
+      <span class="target-lbl">mins</span>
+
+      <div class="target-divider"></div>
+
+      <div class="target-toggle">
+        <button class="ttog-btn active" id="tog-days" onclick="switchTog('days')">Days/week</button>
+        <button class="ttog-btn" id="tog-date" onclick="switchTog('date')">Target date</button>
+      </div>
+
+      <div class="topt show" id="pane-days">
+        <input type="number" id="h-days" min="1" max="7" value="5" title="Days per week">
+        <span class="topt-hint">days</span>
+      </div>
+
+      <div class="topt" id="pane-date">
+        <input type="date" id="h-date" title="Optional goal deadline">
+        <span class="topt-hint">optional</span>
+      </div>
+    </div>
+
+    <div class="notify-row">
+      <span class="target-lbl">Target time</span>
+      <input type="time" id="h-time" class="time-input" value="05:00" title="Target reminder time">
+      <span class="notify-pill">Example: 5:00 AM</span>
+    </div>
+  </div>
+
+  <div class="section-head">Your habits &amp; subjects</div>
+  <div class="habits-list" id="habits-list"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULT_HABITS=[
+  {id:1,name:'Mathematics',target:60,daysPerWeek:6,time:'05:00'},
+  {id:2,name:'Physics',target:45,daysPerWeek:5,time:'06:00'},
+  {id:3,name:'Chemistry',target:45,daysPerWeek:5,time:'07:00'},
+  {id:4,name:'English Literature',target:40,daysPerWeek:5,time:'18:00'},
+  {id:5,name:'History / Social Studies',target:35,daysPerWeek:4,time:'17:00'},
+  {id:6,name:'Hindi / Regional Language',target:30,daysPerWeek:4,time:'19:00'},
+  {id:7,name:'Computer Science',target:45,daysPerWeek:3,time:'20:00'},
+  {id:8,name:'Morning Exercise',target:30,daysPerWeek:6,time:'05:30'},
+  {id:9,name:'Revision & Notes',target:20,daysPerWeek:7,time:'21:00'},
+  {id:10,name:'Reading (non-textbook)',target:20,daysPerWeek:5,time:'22:00'}
+];
+
+function load(){
+  try{
+    const raw=localStorage.getItem('sf_habits');
+    const chkRaw=localStorage.getItem('sf_checks');
+    const npRaw=localStorage.getItem('sf_notify_permission');
+    const parsedHabits = raw?JSON.parse(raw):JSON.parse(JSON.stringify(DEFAULT_HABITS));
+    parsedHabits.forEach(h=>{ if(!('time' in h)) h.time='05:00'; });
+    return {
+      habits: parsedHabits,
+      checks: chkRaw?JSON.parse(chkRaw):{},
+      nextId: parsedHabits.length?Math.max(...parsedHabits.map(h=>h.id))+1:1,
+      notifyPreference: npRaw === 'true'
+    };
+  }catch(e){
+    return {habits:JSON.parse(JSON.stringify(DEFAULT_HABITS)),checks:{},nextId:11,notifyPreference:false};
+  }
+}
+
+let {habits,checks,nextId,notifyPreference}=load();
+let weekOffset=0;
+let saveTimer=null;
+let togMode='days';
+let deferredPrompt=null;
+let reminderTimers=[];
+
+function byId(id){ return document.getElementById(id); }
+function toast(msg){
+  const t = byId('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+function save(){
+  clearTimeout(saveTimer);
+  const ind=byId('save-ind');
+  ind.innerHTML='<div class="save-dot" style="background:#fbbf24"></div><span>Saving...</span>';
+  saveTimer=setTimeout(()=>{
+    try{
+      localStorage.setItem('sf_habits',JSON.stringify(habits));
+      localStorage.setItem('sf_checks',JSON.stringify(checks));
+      localStorage.setItem('sf_notify_permission', String(notifyPreference));
+    }catch(e){}
+    ind.innerHTML='<div class="save-dot"></div><span>All saved</span>';
+  },400);
+}
+
+function dateStr(d){
+  // Use LOCAL date — not UTC — fixes timezone off-by-one (e.g. IST UTC+5:30)
+  const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+day;
+}
+function today(){ const d=new Date(); d.setHours(0,0,0,0); return d; }
+function isToday(d){ return dateStr(d)===dateStr(today()); }
+function todayAt(hhmm){
+  const [h,m] = (hhmm || '05:00').split(':').map(Number);
+  const d = new Date();
+  d.setHours(h||0, m||0, 0, 0);
+  return d;
+}
+
+function getWeekDates(offset){
+  const t=today(), dow=t.getDay(), mon=new Date(t);
+  mon.setHours(0,0,0,0);
+  mon.setDate(t.getDate()-(dow===0?6:dow-1)+offset*7);
+  return Array.from({length:7},(_,i)=>{ const d=new Date(mon); d.setDate(mon.getDate()+i); return d; });
+}
+
+function shiftWeek(d){ weekOffset += d; render(); }
+function goToday(){ weekOffset = 0; render(); }
+
+function toggleCheck(hid,ds,btn){
+  const key=hid+'_'+ds;
+  checks[key]=!checks[key];
+  btn.classList.toggle('done',checks[key]);
+  if(checks[key]){ btn.classList.add('pop'); setTimeout(()=>btn.classList.remove('pop'),200); }
+  save();
+  updateStats(getWeekDates(weekOffset));
+}
+
+function calcStreak(hid){
+  let s=0,d=new Date(today());
+  d.setHours(0,0,0,0);
+  for(let i=0;i<365;i++){
+    if(checks[hid+'_'+dateStr(d)]) s++;
+    else break;
+    d.setDate(d.getDate()-1);
+  }
+  return s;
+}
+
+function updateStats(days){
+  const todayS=dateStr(today());
+  let td=0,tt=habits.length,wd=0,wt=0;
+  days.forEach(d=>{
+    const ds=dateStr(d);
+    if(d<=today()){
+      wt+=habits.length;
+      habits.forEach(h=>{ if(checks[h.id+'_'+ds]) wd++; });
+    }
+    if(ds===todayS) habits.forEach(h=>{ if(checks[h.id+'_'+todayS]) td++; });
+  });
+  const tp=tt?Math.round(td/tt*100):0;
+  const wp=wt?Math.round(wd/wt*100):0;
+  byId('s-today').textContent=tp+'%';
+  byId('s-week').textContent=wp+'%';
+  const best=habits.length?Math.max(0,...habits.map(h=>calcStreak(h.id))):0;
+  byId('s-streak').textContent=best+'d';
+  byId('prog-bar').style.width=wp+'%';
+  byId('prog-label').textContent='Week progress: '+wp+'%';
+}
+
+function switchTog(mode){
+  togMode=mode;
+  byId('tog-days').classList.toggle('active',mode==='days');
+  byId('tog-date').classList.toggle('active',mode==='date');
+  byId('pane-days').classList.toggle('show',mode==='days');
+  byId('pane-date').classList.toggle('show',mode==='date');
+}
+
+function format12Hour(time24){
+  if(!time24) return 'No time';
+  let [h,m] = time24.split(':').map(Number);
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  return `${h}:${String(m).padStart(2,'0')} ${ampm}`;
+}
+
+function addHabit(){
+  const name=byId('h-name').value.trim();
+  if(!name){ toast('Enter a habit name first.'); return; }
+  const target=Math.max(5, parseInt(byId('h-target').value)||45);
+  const dpw=togMode==='days'?Math.min(7, Math.max(1, parseInt(byId('h-days').value)||5)):null;
+  const targetDate=togMode==='date'?(byId('h-date').value||null):null;
+  const time=byId('h-time').value || '05:00';
+  habits.push({id:nextId++,name,target,daysPerWeek:dpw,targetDate,time});
+  byId('h-name').value='';
+  byId('h-date').value='';
+  save();
+  scheduleAllReminders();
+  render();
+  toast('Habit added.');
+}
+
+function deleteHabit(id){
+  habits=habits.filter(h=>h.id!==id);
+  save();
+  scheduleAllReminders();
+  render();
+  toast('Habit removed.');
+}
+
+function dueBadge(h){
+  if(!h.targetDate) return '';
+  const td=new Date(h.targetDate+'T00:00:00');
+  const now = new Date(); now.setHours(0,0,0,0);
+  const diffDays=Math.ceil((td-now)/(1000*60*60*24));
+  const label=td.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  const color=diffDays<0?'var(--danger)':diffDays<=3?'var(--warning)':'var(--purple)';
+  const text=diffDays<0?`Deadline passed · ${label}`:diffDays===0?`Due today · ${label}`:diffDays===1?`Due tomorrow · ${label}`:`Goal by ${label}`;
+  return `<span class="badge" style="color:${color};border-color:${color};background:color-mix(in srgb, ${color} 12%, transparent)">${text}</span>`;
+}
+
+function render(){
+  const days=getWeekDates(weekOffset);
+  const DAY=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const fmt=d=>d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+  byId('week-label').textContent=fmt(days[0])+' – '+fmt(days[6]);
+
+  const list=byId('habits-list');
+  if(!habits.length){ list.innerHTML='<div style="color:var(--muted);font-size:.95rem;padding:1rem 0">No habits yet. Add one above.</div>'; updateStats(days); return; }
+
+  list.innerHTML=habits.map(h=>{
+    const streak=calcStreak(h.id);
+    const pips=Array.from({length:7},(_,i)=>{
+      const d=new Date(today()); d.setHours(0,0,0,0); d.setDate(d.getDate()-6+i);
+      const lit=checks[h.id+'_'+dateStr(d)];
+      const isG=i>=4&&lit;
+      return `<div class="streak-pip${lit?' lit'+(isG?' green':''):''}"></div>`;
+    }).join('');
+
+    const checkCells=days.map((d,i)=>{
+      const ds=dateStr(d);
+      const done=!!checks[h.id+'_'+ds];
+      const future=d>today()&&!isToday(d);
+      const todayClass=isToday(d)?' today-num':'';
+      return `<div class="day-cell">
+        <div class="day-name">${DAY[i]}</div>
+        <div class="day-num${todayClass}">${d.getDate()}</div>
+        <button class="check-btn${done?' done':''}${future?' future':''}" onclick="toggleCheck(${h.id},'${ds}',this)"></button>
+      </div>`;
+    }).join('');
+
+    const metaBits=[`${h.target} min/day`];
+    if(h.daysPerWeek) metaBits.push(`${h.daysPerWeek}d/wk`);
+    if(h.time) metaBits.push(format12Hour(h.time));
+
+    return `<div class="habit-card">
+      <div class="card-top">
+        <div class="habit-title-wrap">
+          <div class="habit-title">${h.name}</div>
+          <div class="habit-sub">
+            <span>${metaBits.join(' · ')}</span>
+            ${dueBadge(h)}
+          </div>
+        </div>
+        <button class="delete-btn" onclick="deleteHabit(${h.id})" title="Remove">✕</button>
+      </div>
+      <div class="days-row" style="grid-template-columns:repeat(7,1fr)">${checkCells}</div>
+      <div class="streak-wrap">
+        <div class="streak-bar">${pips}</div>
+        <div class="streak-text">${streak>0?'🔥 '+streak+'d streak':'no streak'}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  updateStats(days);
+}
+
+function updateNotifyStatus(){
+  const perm = ('Notification' in window) ? Notification.permission : 'unsupported';
+  let text = 'Notifications: off';
+  if(perm === 'granted') text = 'Notifications: on';
+  if(perm === 'denied') text = 'Notifications: blocked in browser';
+  if(perm === 'unsupported') text = 'Notifications: not supported';
+  byId('notify-status').textContent = text;
+}
+
+async function enableNotifications(){
+  if(!('Notification' in window)){
+    toast('This browser does not support notifications.');
+    return;
+  }
+  const result = await Notification.requestPermission();
+  notifyPreference = result === 'granted';
+  updateNotifyStatus();
+  save();
+  if(result === 'granted'){
+    scheduleAllReminders();
+    toast('Notifications enabled. Keep the app installed for better reminders.');
+  }else{
+    toast('Notification permission was not granted.');
+  }
+}
+
+function showNotification(title, body){
+  if(!('Notification' in window) || Notification.permission !== 'granted') return;
+  if(document.visibilityState === 'visible'){
+    new Notification(title,{body, icon:'icon-192.png', badge:'icon-192.png'});
+  }else if(navigator.serviceWorker?.controller){
+    navigator.serviceWorker.ready.then(reg=>reg.showNotification(title,{body, icon:'icon-192.png', badge:'icon-192.png'})).catch(()=>{});
+  }else{
+    new Notification(title,{body, icon:'icon-192.png'});
+  }
+}
+
+function clearReminderTimers(){
+  reminderTimers.forEach(t=>clearTimeout(t));
+  reminderTimers=[];
+}
+
+function scheduleAllReminders(){
+  clearReminderTimers();
+  if(!notifyPreference || !('Notification' in window) || Notification.permission !== 'granted') return;
+  const now = new Date();
+  habits.forEach(h=>{
+    if(!h.time) return;
+    let target = todayAt(h.time);
+    if(target <= now) target.setDate(target.getDate()+1);
+    const delay = target.getTime() - now.getTime();
+    if(delay > 0){
+      const timer = setTimeout(()=>{
+        showNotification('StudyFlow Reminder', `${h.name} — your target is ${h.target} min${h.time ? ' at ' + format12Hour(h.time) : ''}.`);
+        scheduleAllReminders();
+      }, delay);
+      reminderTimers.push(timer);
+    }
+  });
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  byId('install-btn').classList.remove('hidden');
+});
+
+async function handleInstall(){
+  if(!deferredPrompt){
+    toast('Open this through a hosted web link in Chrome, then Add to Home Screen will appear.');
+    return;
+  }
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+}
+
+async function registerSW(){
+  if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+    try{ await navigator.serviceWorker.register('./service-worker.js'); }catch(e){}
+  }
+}
+
+byId('install-btn').addEventListener('click', handleInstall);
+byId('notify-btn').addEventListener('click', enableNotifications);
+byId('h-name').addEventListener('keydown', e=>{ if(e.key==='Enter') addHabit(); });
+window.addEventListener('focus', scheduleAllReminders);
+document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState === 'visible') scheduleAllReminders(); });
+
+registerSW();
+updateNotifyStatus();
+render();
+if(notifyPreference) scheduleAllReminders();
+</script>
+</body>
+</html>

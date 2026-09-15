@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPL Strength Tracker Pro</title>
+  <style>
+    :root{
+      --bg:#07132d;
+      --bg2:#0d1c3d;
+      --card:#162544;
+      --card2:#1c2e54;
+      --text:#eef4ff;
+      --muted:#a9b8d8;
+      --line:rgba(255,255,255,.09);
+      --gold:#f0c66a;
+      --green:#2ed167;
+      --blue:#7fb2ff;
+      --red:#ff7b7b;
+      --shadow:0 12px 30px rgba(0,0,0,.28);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(240,198,106,.16), transparent 22%),
+        radial-gradient(circle at top left, rgba(127,178,255,.14), transparent 18%),
+        linear-gradient(180deg, var(--bg), #061027 100%);
+      min-height:100vh;
+    }
+    .wrap{
+      max-width:720px;
+      margin:0 auto;
+      padding:18px 16px 100px;
+    }
+    .hero,.panel,.entry,.mini{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .hero{
+      border-radius:28px;
+      padding:20px;
+      margin-bottom:14px;
+    }
+    h1{
+      margin:0;
+      font-size:2rem;
+      line-height:1.1;
+      letter-spacing:.2px;
+    }
+    .sub{
+      color:var(--muted);
+      margin-top:8px;
+      line-height:1.5;
+      font-size:.95rem;
+    }
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+    .mini{
+      border-radius:18px;
+      padding:14px 10px;
+      text-align:center;
+    }
+    .mini strong{
+      display:block;
+      font-size:1.2rem;
+      margin-bottom:4px;
+    }
+    .mini span{color:var(--muted);font-size:.8rem}
+    .tabs{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+      margin-bottom:14px;
+    }
+    .tab,.chip,.btn,.split{
+      border:none;
+      border-radius:16px;
+      cursor:pointer;
+      color:var(--text);
+      background:var(--card);
+      border:1px solid var(--line);
+      font:inherit;
+    }
+    .tab{
+      padding:12px 8px;
+      font-weight:700;
+    }
+    .tab.active,.split.active,.chip.active{
+      background:linear-gradient(180deg, rgba(240,198,106,.22), rgba(240,198,106,.08));
+      border-color:rgba(240,198,106,.45);
+      color:#fff3d2;
+    }
+    .panel{
+      display:none;
+      border-radius:24px;
+      padding:14px;
+      margin-bottom:14px;
+    }
+    .panel.active{display:block}
+    .head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:12px;
+    }
+    .head h2{
+      margin:0;
+      font-size:1rem;
+    }
+    .muted{color:var(--muted);font-size:.88rem}
+    .grid2,.grid3,.exerciseGrid{
+      display:grid;
+      gap:10px;
+    }
+    .grid2{grid-template-columns:repeat(2,1fr)}
+    .grid3{grid-template-columns:repeat(3,1fr)}
+    .exerciseGrid{grid-template-columns:repeat(2,1fr)}
+    .card{
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px;
+      margin-top:10px;
+    }
+    .splitGrid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .split,.chip,.btn{
+      padding:12px;
+    }
+    .chip{text-align:left}
+    label{
+      display:block;
+      margin-bottom:6px;
+      font-size:.82rem;
+      color:var(--muted);
+    }
+    input,select,textarea{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#0f1d3c;
+      color:var(--text);
+      padding:12px 13px;
+      outline:none;
+      font:inherit;
+    }
+    textarea{min-height:84px;resize:vertical}
+    .btnRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .btn{
+      font-weight:800;
+      min-height:46px;
+      flex:1 1 160px;
+    }
+    .primary{
+      background:linear-gradient(180deg, rgba(46,209,103,.24), rgba(46,209,103,.12));
+      border:1px solid rgba(46,209,103,.35);
+    }
+    .secondary{
+      background:linear-gradient(180deg, rgba(127,178,255,.22), rgba(127,178,255,.10));
+      border:1px solid rgba(127,178,255,.33);
+    }
+    .danger{
+      background:linear-gradient(180deg, rgba(255,123,123,.22), rgba(255,123,123,.10));
+      border:1px solid rgba(255,123,123,.33);
+      color:#ffd7d7;
+    }
+    .entry{
+      border-radius:18px;
+      padding:12px;
+      margin-bottom:10px;
+    }
+    .entryTop{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:8px;
+      margin-bottom:8px;
+    }
+    .entry h3{margin:0;font-size:1rem}
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      font-size:.76rem;
+      white-space:nowrap;
+      margin-left:6px;
+    }
+    .gold{background:rgba(240,198,106,.16);color:#fff0c7;border-color:rgba(240,198,106,.35)}
+    .blue{background:rgba(127,178,255,.16);color:#dce8ff;border-color:rgba(127,178,255,.35)}
+    .green{background:rgba(46,209,103,.16);color:#dcffe7;border-color:rgba(46,209,103,.35)}
+    .small{font-size:.85rem;color:var(--muted);line-height:1.45}
+    .timerDisplay{
+      font-size:2.2rem;
+      font-weight:900;
+      text-align:center;
+      margin:6px 0 10px;
+    }
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.78rem;
+      margin-top:10px;
+    }
+    @media (max-width:520px){
+      .tabs,.grid2,.grid3,.exerciseGrid,.splitGrid,.stats{grid-template-columns:1fr}
+      h1{font-size:1.8rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>💪 PPL Tracker Pro</h1>
+      <div class="sub">Ab sahi wala version. Push / Pull / Legs plan, ready-made exercises, 3-set logging, PR tracking, history, timer, export/import, aur sab kuch phone me save.</div>
+      <div class="stats">
+        <div class="mini"><strong id="statWorkouts">0</strong><span>Total Workouts</span></div>
+        <div class="mini"><strong id="statSets">0</strong><span>Total Logged Sets</span></div>
+        <div class="mini"><strong id="statPRs">0</strong><span>PR Hits</span></div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="planTab">Plan</button>
+      <button class="tab" data-tab="logTab">Log</button>
+      <button class="tab" data-tab="historyTab">History</button>
+      <button class="tab" data-tab="toolsTab">Tools</button>
+    </div>
+
+    <section class="panel active" id="planTab">
+      <div class="head">
+        <h2>Your plan</h2>
+        <span class="muted">Strength-focused setup</span>
+      </div>
+
+      <div class="card">
+        <div><span class="badge gold">Push 1</span></div>
+        <div class="small" style="margin-top:8px;">Bench Press, Incline Dumbbell Press, Overhead Press, Lateral Raise, Tricep Pushdown</div>
+      </div>
+
+      <div class="card">
+        <div><span class="badge gold">Push 2</span></div>
+        <div class="small" style="margin-top:8px;">Incline Bench Press, Machine Chest Press / Dips, Dumbbell Shoulder Press, Cable Lateral Raise, Skull Crushers</div>
+      </div>
+
+      <div class="card">
+        <div><span class="badge blue">Pull 1</span></div>
+        <div class="small" style="margin-top:8px;">Pull Ups / Lat Pulldown, Barbell Row, Seated Row, Barbell Curl, Hammer Curl, Wrist Curl / Farmer Hold</div>
+      </div>
+
+      <div class="card">
+        <div><span class="badge blue">Pull 2</span></div>
+        <div class="small" style="margin-top:8px;">Close Grip Lat Pulldown, One Arm Row, Straight Arm Pulldown, Incline Curl, Preacher Curl, Reverse Curl / Dead Hang</div>
+      </div>
+
+      <div class="card">
+        <div><span class="badge green">Legs 1</span></div>
+        <div class="small" style="margin-top:8px;">Squat, Leg Press, Leg Curl, Standing Calf Raise, Hanging Leg Raise, Crunch</div>
+      </div>
+
+      <div class="card">
+        <div><span class="badge green">Legs 2</span></div>
+        <div class="small" style="margin-top:8px;">Romanian Deadlift, Leg Extension, Walking Lunges, Seated Calf Raise, Cable Crunch, Plank</div>
+      </div>
+
+      <div class="card">
+        <div class="small"><strong>Weekly flow:</strong> Push 1 → Pull 1 → Legs 1 → Rest → Push 2 → Pull 2 → Legs 2 → Rest</div>
+      </div>
+    </section>
+
+    <section class="panel" id="logTab">
+      <div class="head">
+        <h2>Log workout</h2>
+        <span class="muted">Split choose karo, exercise tap karo</span>
+      </div>
+
+      <div class="splitGrid" id="splitWrap"></div>
+      <div class="exerciseGrid" id="exerciseWrap"></div>
+
+      <div class="card">
+        <div class="grid2">
+          <div>
+            <label>Date</label>
+            <input type="date" id="date" />
+          </div>
+          <div>
+            <label>Selected split</label>
+            <input type="text" id="splitInput" readonly />
+          </div>
+        </div>
+
+        <div style="margin-top:10px;">
+          <label>Exercise</label>
+          <input type="text" id="exercise" placeholder="Select exercise or type custom name" />
+        </div>
+
+        <div class="grid3" style="margin-top:10px;">
+          <div>
+            <label>Set 1</label>
+            <input type="text" id="set1" placeholder="60 x 8" />
+          </div>
+          <div>
+            <label>Set 2</label>
+            <input type="text" id="set2" placeholder="60 x 7" />
+          </div>
+          <div>
+            <label>Set 3</label>
+            <input type="text" id="set3" placeholder="60 x 6" />
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:10px;">
+          <div>
+            <label>RPE</label>
+            <select id="rpe">
+              <option value="">Select</option>
+              <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+            </select>
+          </div>
+          <div>
+            <label>PR?</label>
+            <select id="pr">
+              <option>No</option>
+              <option>Yes</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top:10px;">
+          <label>Notes</label>
+          <textarea id="notes" placeholder="Example: Bench strong tha, row me grip weak thi..."></textarea>
+        </div>
+
+        <div class="btnRow">
+          <button class="btn primary" id="saveBtn">Save Entry</button>
+          <button class="btn secondary" id="clearBtn">Clear Form</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="head">
+          <h2>Quick progress check</h2>
+          <span class="muted">Same exercise ki latest 2 entries compare</span>
+        </div>
+        <div class="grid2">
+          <div>
+            <label>Exercise name</label>
+            <input type="text" id="compareName" placeholder="Bench Press" />
+          </div>
+          <div style="display:flex;align-items:flex-end;">
+            <button class="btn secondary" id="compareBtn" style="width:100%;">Check Progress</button>
+          </div>
+        </div>
+        <div id="compareResult" class="small" style="margin-top:10px;"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="historyTab">
+      <div class="head">
+        <h2>History</h2>
+        <span class="muted">Phone me hi save hota rahega</span>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <label>Filter by split</label>
+          <select id="filter">
+            <option>All</option>
+            <option>Push 1</option>
+            <option>Push 2</option>
+            <option>Pull 1</option>
+            <option>Pull 2</option>
+            <option>Legs 1</option>
+            <option>Legs 2</option>
+          </select>
+        </div>
+        <div style="display:flex;align-items:flex-end;">
+          <button class="btn danger" id="deleteAll" style="width:100%;">Delete All Data</button>
+        </div>
+      </div>
+
+      <div id="historyList" style="margin-top:12px;"></div>
+      <div class="footer">Tip: same exercise naam use karega to progress dekhna easy rahega.</div>
+    </section>
+
+    <section class="panel" id="toolsTab">
+      <div class="head">
+        <h2>Tools</h2>
+        <span class="muted">Rest timer + backup</span>
+      </div>
+
+      <div class="card">
+        <div class="head">
+          <h2>Rest timer</h2>
+          <span class="muted">Heavy: 180, accessories: 60-90</span>
+        </div>
+        <div class="grid3">
+          <button class="btn secondary timerPreset" data-sec="60">60 sec</button>
+          <button class="btn secondary timerPreset" data-sec="90">90 sec</button>
+          <button class="btn secondary timerPreset" data-sec="180">180 sec</button>
+        </div>
+        <div class="timerDisplay" id="timerDisplay">01:30</div>
+        <div class="btnRow">
+          <button class="btn primary" id="startTimer">Start</button>
+          <button class="btn secondary" id="pauseTimer">Pause</button>
+          <button class="btn danger" id="resetTimer">Reset</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="head">
+          <h2>Backup</h2>
+          <span class="muted">Export / import your logs</span>
+        </div>
+        <div class="btnRow">
+          <button class="btn secondary" id="exportBtn">Export JSON</button>
+          <label class="btn primary" for="importFile" style="display:flex;align-items:center;justify-content:center;">Import JSON</label>
+          <input id="importFile" type="file" accept="application/json" style="display:none;">
+        </div>
+      </div>
+    </section>
+  </div>
+
+<script>
+const STORAGE_KEY = "ppl_tracker_pro_v2";
+const PLAN = {
+  "Push 1":["Bench Press","Incline Dumbbell Press","Overhead Press","Lateral Raise","Tricep Pushdown"],
+  "Push 2":["Incline Bench Press","Machine Chest Press","Dips","Dumbbell Shoulder Press","Cable Lateral Raise","Skull Crushers"],
+  "Pull 1":["Pull Ups","Lat Pulldown","Barbell Row","Seated Row","Barbell Curl","Hammer Curl","Wrist Curl","Farmer Hold"],
+  "Pull 2":["Close Grip Lat Pulldown","One Arm Row","Straight Arm Pulldown","Incline Curl","Preacher Curl","Reverse Curl","Dead Hang"],
+  "Legs 1":["Squat","Leg Press","Leg Curl","Standing Calf Raise","Hanging Leg Raise","Crunch"],
+  "Legs 2":["Romanian Deadlift","Leg Extension","Walking Lunges","Seated Calf Raise","Cable Crunch","Plank"]
+};
+
+let selectedSplit = "Push 1";
+let timerBase = 90;
+let timerRemaining = 90;
+let timerInt = null;
+
+function qs(id){ return document.getElementById(id); }
+function getLogs(){ return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); }
+function saveLogs(logs){ localStorage.setItem(STORAGE_KEY, JSON.stringify(logs)); renderStats(); renderHistory(); }
+
+function setToday(){
+  const d = new Date();
+  const local = new Date(d.getTime() - d.getTimezoneOffset()*60000).toISOString().split("T")[0];
+  qs("date").value = local;
+}
+
+function initTabs(){
+  document.querySelectorAll(".tab").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+      document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+      btn.classList.add("active");
+      qs(btn.dataset.tab).classList.add("active");
+    });
+  });
+}
+
+function renderSplitButtons(){
+  const wrap = qs("splitWrap");
+  wrap.innerHTML = "";
+  Object.keys(PLAN).forEach((split, idx)=>{
+    const b = document.createElement("button");
+    b.className = "split" + (idx===0 ? " active":"");
+    b.textContent = split;
+    b.onclick = ()=>{
+      selectedSplit = split;
+      qs("splitInput").value = split;
+      document.querySelectorAll(".split").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      renderExerciseButtons(split);
+    };
+    wrap.appendChild(b);
+  });
+  qs("splitInput").value = selectedSplit;
+  renderExerciseButtons(selectedSplit);
+}
+
+function renderExerciseButtons(split){
+  const wrap = qs("exerciseWrap");
+  wrap.innerHTML = "";
+  (PLAN[split] || []).forEach(name=>{
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.textContent = name;
+    b.onclick = ()=>{
+      qs("exercise").value = name;
+      document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+    };
+    wrap.appendChild(b);
+  });
+}
+
+function countSets(item){
+  return [item.set1,item.set2,item.set3].filter(Boolean).length;
+}
+
+function renderStats(){
+  const logs = getLogs();
+  const workouts = new Set(logs.map(x => x.date + "_" + x.split)).size;
+  const sets = logs.reduce((a,b)=>a + countSets(b), 0);
+  const prs = logs.filter(x=>x.pr==="Yes").length;
+  qs("statWorkouts").textContent = workouts;
+  qs("statSets").textContent = sets;
+  qs("statPRs").textContent = prs;
+}
+
+function clearForm(){
+  qs("exercise").value = "";
+  qs("set1").value = "";
+  qs("set2").value = "";
+  qs("set3").value = "";
+  qs("rpe").value = "";
+  qs("pr").value = "No";
+  qs("notes").value = "";
+  document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+}
+
+function saveEntry(){
+  const entry = {
+    id: Date.now(),
+    date: qs("date").value,
+    split: qs("splitInput").value,
+    exercise: qs("exercise").value.trim(),
+    set1: qs("set1").value.trim(),
+    set2: qs("set2").value.trim(),
+    set3: qs("set3").value.trim(),
+    rpe: qs("rpe").value,
+    pr: qs("pr").value,
+    notes: qs("notes").value.trim()
+  };
+  if(!entry.date || !entry.split || !entry.exercise || (!entry.set1 && !entry.set2 && !entry.set3)){
+    alert("Date, split, exercise, aur kam se kam 1 set fill karo.");
+    return;
+  }
+  const logs = getLogs();
+  logs.unshift(entry);
+  saveLogs(logs);
+  clearForm();
+  alert("Entry saved ✅");
+}
+
+function escapeHtml(str){
+  return (str || "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+}
+
+function renderHistory(){
+  const filter = qs("filter").value;
+  const logs = getLogs().filter(x => filter==="All" || x.split===filter);
+  const wrap = qs("historyList");
+  wrap.innerHTML = "";
+  if(!logs.length){
+    wrap.innerHTML = '<div class="card"><div class="small">Abhi koi logs nahi hain. Log tab se start kar.</div></div>';
+    return;
+  }
+  logs.forEach(log=>{
+    const cls = log.split.startsWith("Push") ? "gold" : (log.split.startsWith("Pull") ? "blue" : "green");
+    const div = document.createElement("div");
+    div.className = "entry";
+    div.innerHTML = `
+      <div class="entryTop">
+        <div>
+          <h3>${escapeHtml(log.exercise)}</h3>
+          <div class="small">${escapeHtml(log.date)} • ${escapeHtml(log.split)}</div>
+        </div>
+        <div>
+          ${log.pr==="Yes" ? '<span class="badge gold">PR</span>' : ''}
+          <span class="badge ${cls}">${escapeHtml(log.split)}</span>
+        </div>
+      </div>
+      <div class="small"><strong>Sets:</strong> ${[log.set1,log.set2,log.set3].filter(Boolean).map(escapeHtml).join(" | ") || "-"}</div>
+      <div class="small" style="margin-top:6px;"><strong>RPE:</strong> ${escapeHtml(log.rpe || "-")}</div>
+      ${log.notes ? `<div class="small" style="margin-top:6px;"><strong>Notes:</strong> ${escapeHtml(log.notes)}</div>` : ""}
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+function compareProgress(){
+  const name = qs("compareName").value.trim().toLowerCase();
+  const out = qs("compareResult");
+  if(!name){
+    out.textContent = "Exercise naam likho.";
+    return;
+  }
+  const items = getLogs().filter(x => x.exercise.trim().toLowerCase() === name);
+  if(items.length < 2){
+    out.textContent = "Is exercise ki kam se kam 2 entries chahiye comparison ke liye.";
+    return;
+  }
+  const latest = items[0];
+  const previous = items[1];
+  out.innerHTML = `
+    <strong>Latest:</strong> ${escapeHtml(latest.date)} — ${escapeHtml([latest.set1,latest.set2,latest.set3].filter(Boolean).join(" | "))}<br>
+    <strong>Previous:</strong> ${escapeHtml(previous.date)} — ${escapeHtml([previous.set1,previous.set2,previous.set3].filter(Boolean).join(" | "))}<br>
+    <span class="muted">Check karo reps ya weight improve hua ya nahi.</span>
+  `;
+}
+
+function formatTime(sec){
+  const m = String(Math.floor(sec/60)).padStart(2,"0");
+  const s = String(sec%60).padStart(2,"0");
+  return `${m}:${s}`;
+}
+function renderTimer(){ qs("timerDisplay").textContent = formatTime(timerRemaining); }
+function startTimer(){
+  if(timerInt) return;
+  timerInt = setInterval(()=>{
+    if(timerRemaining > 0){
+      timerRemaining--;
+      renderTimer();
+    }else{
+      clearInterval(timerInt);
+      timerInt = null;
+      try{ navigator.vibrate && navigator.vibrate([200,100,200]); }catch(e){}
+      alert("Rest time over 💪");
+    }
+  },1000);
+}
+function pauseTimer(){
+  clearInterval(timerInt);
+  timerInt = null;
+}
+function resetTimer(){
+  pauseTimer();
+  timerRemaining = timerBase;
+  renderTimer();
+}
+function exportData(){
+  const data = JSON.stringify(getLogs(), null, 2);
+  const blob = new Blob([data], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "ppl-tracker-backup.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+function importData(file){
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try{
+      const data = JSON.parse(e.target.result);
+      if(!Array.isArray(data)) throw new Error("Invalid");
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      renderStats();
+      renderHistory();
+      alert("Backup imported ✅");
+    }catch(err){
+      alert("Invalid JSON file.");
+    }
+  };
+  reader.readAsText(file);
+}
+
+qs("saveBtn").addEventListener("click", saveEntry);
+qs("clearBtn").addEventListener("click", clearForm);
+qs("compareBtn").addEventListener("click", compareProgress);
+qs("filter").addEventListener("change", renderHistory);
+qs("deleteAll").addEventListener("click", ()=>{
+  if(confirm("Pura data delete karna hai?")){
+    localStorage.removeItem(STORAGE_KEY);
+    renderStats();
+    renderHistory();
+  }
+});
+document.querySelectorAll(".timerPreset").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    timerBase = Number(btn.dataset.sec);
+    timerRemaining = timerBase;
+    renderTimer();
+  });
+});
+qs("startTimer").addEventListener("click", startTimer);
+qs("pauseTimer").addEventListener("click", pauseTimer);
+qs("resetTimer").addEventListener("click", resetTimer);
+qs("exportBtn").addEventListener("click", exportData);
+qs("importFile").addEventListener("change", e => importData(e.target.files[0]));
+
+initTabs();
+setToday();
+renderSplitButtons();
+renderStats();
+renderHistory();
+renderTimer();
+</script>
+</body>
+</html>
