@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Lead Triage Automation — Naeem Malik</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0c0a09; color: #e7e5e4; font-family: 'Inter', sans-serif; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 40px 20px 70px; }
+  .back { display: inline-block; color: #78716c; font-size: 12.5px; text-decoration: none; margin-bottom: 20px; }
+  .back:hover { color: #d4a017; }
+  .eyebrow { color: #d4a017; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  h1 { font-family: 'Lora', serif; font-size: 30px; margin: 6px 0 10px; color: #fafaf9; }
+  .sub { color: #a8a29e; font-size: 14.5px; line-height: 1.65; max-width: 540px; margin-bottom: 28px; }
+  .live-btn { display: inline-flex; align-items: center; gap: 8px; background: #d4a017; color: #1c1917; font-weight: 600; font-size: 14px; padding: 12px 22px; border-radius: 8px; text-decoration: none; margin-bottom: 40px; }
+  .live-btn:hover { background: #e6b02a; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #1c1917; display: inline-block; animation: pulse 1.6s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: #78716c; border-bottom: 1px solid #292524; padding-bottom: 8px; margin: 40px 0 20px; }
+  .flow { display: flex; flex-direction: column; gap: 0; }
+  .step { display: flex; gap: 16px; }
+  .step-marker { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 32px; }
+  .step-num { width: 32px; height: 32px; border-radius: 50%; background: rgba(212,160,23,0.12); border: 1px solid rgba(212,160,23,0.4); color: #d4a017; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+  .step-line { flex: 1; width: 2px; background: #292524; margin: 4px 0; min-height: 30px; }
+  .step:last-child .step-line { display: none; }
+  .step-body { padding-bottom: 28px; flex: 1; }
+  .step-title { font-size: 15.5px; font-weight: 600; color: #fafaf9; margin-bottom: 4px; }
+  .step-tag { font-size: 11px; color: #d4a017; background: rgba(212,160,23,0.1); border: 1px solid rgba(212,160,23,0.25); border-radius: 5px; padding: 1px 7px; margin-left: 8px; vertical-align: middle; }
+  .step-desc { font-size: 13px; color: #a8a29e; line-height: 1.55; }
+  .card { background: rgba(41,37,36,0.4); border: 1px solid #292524; border-radius: 10px; padding: 18px; margin-top: 40px; }
+  .card h3 { font-size: 13px; color: #fafaf9; margin: 0 0 10px; }
+  .card p { font-size: 13px; color: #a8a29e; line-height: 1.6; margin: 0 0 10px; }
+  .card p:last-child { margin-bottom: 0; }
+  footer { margin-top: 48px; font-size: 11px; color: #57534e; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">&larr; Back to portfolio</a>
+  <div class="eyebrow">Live n8n Automation</div>
+  <h1>AI Lead Triage Automation</h1>
+  <div class="sub">An end-to-end workflow that takes a raw customer inquiry, classifies it with Claude, and routes it — with real branching logic and no manual steps.</div>
+
+  <a class="live-btn" href="https://naeemmalik.app.n8n.cloud/form/292e62d5-3b9a-4c47-84fa-6436f0c9e0f6" target="_blank">
+    <span class="dot"></span> Try the live form
+  </a>
+
+  <h2>How it works</h2>
+  <div class="flow">
+    <div class="step">
+      <div class="step-marker"><div class="step-num">1</div><div class="step-line"></div></div>
+      <div class="step-body">
+        <div class="step-title">Form Trigger <span class="step-tag">n8n Form</span></div>
+        <div class="step-desc">A customer submits a raw inquiry through a hosted form — no email or manual entry needed. This fires the workflow instantly.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker"><div class="step-num">2</div><div class="step-line"></div></div>
+      <div class="step-body">
+        <div class="step-title">Claude Classification <span class="step-tag">Anthropic API</span></div>
+        <div class="step-desc">The raw text is sent to Claude with a structured prompt. Claude returns category, urgency, recommended routing, and a ready-to-send reply — as JSON.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker"><div class="step-num">3</div><div class="step-line"></div></div>
+      <div class="step-body">
+        <div class="step-title">Parse Response <span class="step-tag">Code node</span></div>
+        <div class="step-desc">A small JavaScript step extracts Claude's JSON output into clean, usable fields for the rest of the workflow.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker"><div class="step-num">4</div><div class="step-line"></div></div>
+      <div class="step-body">
+        <div class="step-title">Urgency Branch <span class="step-tag">IF condition</span></div>
+        <div class="step-desc">The workflow checks urgency and branches — high-priority leads can be routed differently from routine ones, without any manual triage.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker"><div class="step-num">5</div></div>
+      <div class="step-body">
+        <div class="step-title">Log to Sheet <span class="step-tag">Google Sheets</span></div>
+        <div class="step-desc">Every classified lead is appended to a tracking sheet — category, urgency, routing, and draft reply — acting as a lightweight CRM.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Why this matters</h3>
+    <p>This mirrors a real automation a business would use to stop manually reading and sorting every incoming inquiry — the same pattern used for lead intake, support triage, and CRM automation.</p>
+    <p>Built and tested end-to-end in n8n, using the Anthropic API for the reasoning step. Try the live form above with your own inquiry to see it classify in real time.</p>
+  </div>
+
+  <footer>Built by Naeem Malik.</footer>
+</div>
+</body>
+</html>
